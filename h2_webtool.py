@@ -8,8 +8,8 @@ Created on Fri Feb  3 13:42:22 2023
 import numpy as np
 import pandas as pd
 import os
-#from js import createObject
-#from pyodide.ffi import create_proxy
+#from js import document
+#from pyodide import create_proxy
 
 DATASOURCEPATH = os.path.dirname(os.path.abspath(__file__)) + '\erz_data.csv'
 
@@ -26,10 +26,10 @@ windC_base = gen_data['Wind Coast'].to_numpy(dtype='float64')
 windO_base = gen_data['Wind Offshore'].to_numpy(dtype='float64')
 
 # get current slider values
-slider_pv = 1
-slider_windC = 0
-slider_windO = 2
-slider_electrolysis = 0.5
+p_pv = 1
+p_windC = 0
+p_windO = 2
+p_electrolysis = 0.5
 
 # drop down values for electrolysis efficiency
 n_pem = 0.62
@@ -39,25 +39,25 @@ n_soc = 0.65
 
 
 # scale generation profiles
-pv_scaled = pv_base * slider_pv
-windC_scaled = windC_base * slider_windC
-windO_scaled = windO_base * slider_windO
+pv_scaled = pv_base * p_pv
+windC_scaled = windC_base * p_windC
+windO_scaled = windO_base * p_windO
 gen_combined = pv_scaled + windC_scaled + windO_scaled
 
 # calculate output values
 # operational power of electrolyzer
 used_power = np.empty([1,0])
 for i in range(0, len(gen_combined)):
-    if gen_combined[i] <= slider_electrolysis:
+    if gen_combined[i] <= p_electrolysis:
         used_power = np.append(used_power, gen_combined[i])
     else:
-        used_power = np.append(used_power, slider_electrolysis)
+        used_power = np.append(used_power, p_electrolysis)
         
 # energy used by the electrolyzer
 used_energy = used_power.sum()
 
 # calculate VLH (Volllaststunden)
-vlh = used_energy / slider_electrolysis
+vlh = used_energy / p_electrolysis
 
 # choose electrolysis type efficiency and calculate hydrogen mass
 electrolysis_type = "pem"
@@ -114,6 +114,7 @@ output = {
     }
 
 print(output)
+
 
 
 
