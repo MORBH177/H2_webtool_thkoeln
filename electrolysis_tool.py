@@ -11,6 +11,8 @@ import pandas as pd
 from js import document, Element, console
 from pyodide import create_proxy
 from pyodide.http import open_url
+from pyodide.ffi.wrappers import add_event_listener
+
 
 # get html objects
 #   sliders
@@ -18,48 +20,50 @@ slider_pv = document.getElementById("sl1")
 slider_windC = document.getElementById("sl2")
 slider_windO = document.getElementById("sl3")
 slider_electrolysis = document.getElementById("sl4")
-#   dropdown
-electrolysis_model = document.getElementById("ele_type")
 #   output boxes
 energy_input = document.getElementById("en_zu")
 water_input = document.getElementById("h2o")
 h2_output = document.getElementById("h2")
+h2_lhv_output = document.getElementById("h2_lhv")
+h2_hhv_output = document.getElementById("h2_hhv")
 o2_output = document.getElementById("o2")
-heat_output = document.getElementById("heatOUT")
+heat_output = document.getElementById("heatSTACK")
 vlh_operation = document.getElementById("vlh_ele")
 
 
 # define Path for base data
 url = ("http://127.0.0.1:5500/erz_data.csv")
 
+# read base data
+gen_data = pd.read_csv(open_url(url), delimiter=';')
+
+# generate base generation profiles
+pv_base = gen_data['PV'].to_numpy(dtype='float64')
+windC_base = gen_data['Wind Coast'].to_numpy(dtype='float64')
+windO_base = gen_data['Wind Offshore'].to_numpy(dtype='float64')
+
+# set base values for plot
+amt_cars = 5000
+amt_busses = 5000
+amt_wasteheat = 4000
+amt_h2heat= 3000
+m_fe = 4300
+
 async def update_results(event):
-    await asyncio.sleep(.1)
-
-    # read base data
-    gen_data = pd.read_csv(open_url(url), delimiter=';')
-
-    # generate base generation profiles
-    pv_base = gen_data['PV'].to_numpy(dtype='float64')
-    windC_base = gen_data['Wind Coast'].to_numpy(dtype='float64')
-    windO_base = gen_data['Wind Offshore'].to_numpy(dtype='float64')
-    
     
     # get current slider and dropdown values
     p_pv = float(slider_pv.value)
     p_windC = float(slider_windC.value)
     p_windO = float(slider_windO.value)
     p_electrolysis = float(slider_electrolysis.value)
-    electrolysis_type = electrolysis_model.value
     
     # drop down values for electrolysis efficiency
     n_pem = 0.62
-    n_ael = 0.55
-    n_soc = 0.65
-    n_pem_heat = 0.90
-    n_ael_heat = 0.82
+    n_pem_heat = 0.20
     
     # define constants
     hu_h2 = 33.33 # MWh/t
+    ho_h2 = 39.41 #MWh/t
     density_h2o = 997 # kg/m³
     
     # scale generation profiles
@@ -78,71 +82,65 @@ async def update_results(event):
             used_power = np.append(used_power, p_electrolysis)
             
     # energy used by the electrolyzer
-    used_energy = used_power.sum()
+    used_energy = used_power.sum() # MWh
 
     # calculate VLH (Volllaststunden)
-    vlh = used_energy / p_electrolysis
+    vlh = used_energy / p_electrolysis # h
 
-    # choose electrolysis type efficiency and calculate hydrogen mass
-    if electrolysis_type == "soc":
-        eff = n_soc
-        m_h2 = (used_energy * eff) / hu_h2
-        heat = 0.0
-    elif electrolysis_type == "ael":
-        eff = n_ael
-        m_h2 = (used_energy * eff) / hu_h2
-        heat = (used_energy * (n_ael_heat - n_ael))
-    elif electrolysis_type == "pem":
-        eff = n_pem
-        m_h2 = (used_energy * eff) / hu_h2
-        heat = (used_energy * (n_pem_heat - n_pem))
-    else:
-        eff = n_pem
-        m_h2 = (used_energy * eff) / hu_h2
-        heat = (used_energy * (n_pem_heat - n_pem))
 
+    # calculate outputs
+    # mass hydrogen
+    m_h2 = (used_energy * n_pem) / hu_h2 # t
+    
+    # heat
+    heat_stack = (used_energy * n_pem_heat) # MWh
+    
+    # calculation energy in H2 LHV and HHV
+    h2_lhv = m_h2 * hu_h2 # MWh
+    h2_hhv = m_h2 * ho_h2 # MWh
 
     # calculate water demand
-    v_h2o = ((9 * m_h2) * 1000) / density_h2o # m³
-    m_o2 = 0.5 * m_h2 # t
-
-
-
-    # calculate graphics  
-    range_car = 1.2  # kg H2 / 100km
-    range_bus = 6 # kg H2 / 100 km  
-    demand_house = 15 * 120 # kWh pro haus (KfW40 Haus 15kWh/m² Annahme: 120m²)
-
-    # equivalent to X km per Car/Bus or X Amount of house heating
-    km_car = (m_h2 * 1000) / range_car
-    km_bus = (m_h2 * 1000) / range_bus
-    amount_house = (m_h2 * hu_h2 * 1000) / demand_house # WÄRMEBEREITSTELLUNG AUS ERZEUGTEM WASSERSTOFF ODER AUS ABWÄRME DER ELEKTROLYSE???
-
-    # factors how many km represent one pictogram for cars/busses/houses
-    factor_cars = 1500
-    factor_bus = 800
-    factor_house = 150
-
-    eq_cars = int(km_car / factor_cars)
-    eq_busses = int(km_bus / factor_bus)
-    eq_house = int(amount_house / factor_house)
-
+    v_h2o = ((16 * m_h2) * 1000) / density_h2o # m³
     
+    # mass oxygen
+    m_o2 = 8 * m_h2 # t
+    
+    # factors for graphic 
+    consumption_car = 1.2  # kg H2 / 100km
+    consumption_bus = 6 # kg H2 / 100 km  
+    consumption_house = 15 * 120 # kWh pro haus (KfW40 Haus 15kWh/m² Annahme: 120m²)
+
+    # amounts supplied
+    # mass Roheisen
+    m_fe = m_h2 * 28 # t
+    # cars
+    amt_cars = (m_h2 * 1000) / consumption_car
+    # busses
+    amt_busses = (m_h2 * 1000) / consumption_bus
+    # amount house heating by wasteheat
+    amt_wasteheat = (heat_stack * 1000) / consumption_house
+    # amount house heating by heat from H2
+    amt_h2heat = (h2_hhv * 1000) / consumption_house
+    
+    # write results on page
     energy_input.value = str(int(used_energy))
     water_input.value = str(int(v_h2o))
     h2_output.value = str(int(m_h2))
+    h2_lhv_output.value = str(int(h2_lhv))
+    h2_hhv_output.value = str(int(h2_hhv))
     o2_output.value = str(int(m_o2))
-    heat_output.value = str(int(heat))
+    heat_output.value = str(int(heat_stack))
     vlh_operation.value = str(int(vlh))
+        
+    await asyncio.sleep(.1)
     
     
 
 # create proxy function
-update_proxy = create_proxy(update_results)
+#update_res = create_proxy(update_results)
 
 # define EventListeners and update results
-pv = slider_pv.addEventListener("input", update_proxy)
-windCoast = slider_windC.addEventListener("input", update_proxy)
-windOffshore = slider_windO.addEventListener("input", update_proxy)
-electrolyze = slider_electrolysis.addEventListener("input", update_proxy)
-elec_model = electrolysis_model.addEventListener("change", update_proxy)
+add_event_listener(slider_pv, "input", update_results)
+add_event_listener(slider_windC, "input", update_results)
+add_event_listener(slider_windO, "input", update_results)
+add_event_listener(slider_electrolysis, "input", update_results)

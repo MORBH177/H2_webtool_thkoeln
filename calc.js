@@ -25,7 +25,12 @@ function updateText4(val) {
 function updateMax() {
   const maxUse = 0.8;
   var max = parseInt(document.getElementById("sl1").value) + parseInt(document.getElementById("sl2").value) + parseInt(document.getElementById("sl3").value);
+  if (max < 1) {
+    max = 1 / maxUse;
+    updateText4(max * maxUse);
+  }
   document.getElementById("sl4").max = max * maxUse;
+  
 }
 
 function updateSlider1(val){
@@ -70,10 +75,13 @@ function updateSlider3(val){
 function updateSlider4(val){
   const maxUse = 0.8;
   var max = parseInt(document.getElementById("sl1").value) + parseInt(document.getElementById("sl2").value) + parseInt(document.getElementById("sl3").value);
+  if (max < 1) {
+    max = 1 / maxUse;
+  }
   updateMax();
-  if (val < 0) {
-    document.getElementById("sl4").value = 0;
-    document.getElementById("textPem").value = 0;
+  if (val < 1) {
+    document.getElementById("sl4").value = 1;
+    document.getElementById("textPem").value = 1;
   } else if (val > max * maxUse) {
     document.getElementById("sl4").value = parseInt(max * maxUse);
     document.getElementById("textPem").value = parseInt(max * maxUse);
