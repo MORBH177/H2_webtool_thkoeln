@@ -25,31 +25,25 @@
     <div>
       <label for="sl1">PV:</label>
       <input type="range" id="sl1" min="0" max="100" value="50" oninput="updateText1(this.value)">
-      <input type="text" id="textPv" value="50" align="center" disabled>
+      <input type="number" id="textPv" value="50" min="0" max="100" align="center" onchange="updateSlider1(this.value)">
       
     </div>
     <div>
       <label for="sl2">Wind Onshore:</label>
       <input type="range" id="sl2" min="0" max="100" value="50" oninput="updateText2(this.value)">
-      <input type="text" id="textWindC" value="50" align="center" disabled>
+      <input type="number" id="textWindC" value="50" align="center" onchange="updateSlider2(this.value)"
     </div>
     <div>
       <label for="sl3">Wind Offshore:</label>
       <input type="range" id="sl3" min="0" max="100" value="50" oninput="updateText3(this.value)">
-      <input type="text" id="textWindO" value="50" align="center" disabled>
+      <input type="number" id="textWindO" value="50" min="0" max="100" align="center" onchange="updateSlider3(this.value)">
     </div>
     <div>
         <label for="sl4">Elektrolyseur:</label>
-        <input type="range" id="sl4" min="0" max="100" value="50" step=0.5 oninput="updateText4(this.value)">
-        <input type="text" id="textPem" value="50" align="center" disabled>
+        <input type="range" id="sl4" min="0" max="100" value="0" oninput="updateText4(this.value)">
+        <input type="number" id="textPem" value="0" min="0" align="center" onchange="updateSlider4(this.value)">
       </div>
-    <div>
-      <select name="electrolysis model" id="ele_type">
-        <option value="pem">Polymer-Exchange-Membran Elektrolyse</option>
-        <option value="ael">Alkalische Elektrolyse</option>
-        <option value="soc">Hochtemperatur Elektrolyse</option>
-      </select>
-    </div>
+    
 
     <div>
       <label for="en_zu">Energie [MWh]</label>
