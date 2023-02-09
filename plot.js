@@ -6,8 +6,7 @@ var chart = new Chart(ctx, {
         labels: ['cars', 'busses', 'houses from wasteheat', 'houses from H2heat', 't iron'],
         datasets: [{
         label: '# of Votes',
-        data: [0, 0, 0, 0, 0],
-        borderWidth: 1
+        data: [0, 0, 0, 0, 0]
         }]
     },
     options: {
