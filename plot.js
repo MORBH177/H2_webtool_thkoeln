@@ -5,8 +5,9 @@ var chart = new Chart(ctx, {
     data: {
         labels: ['cars', 'busses', 'houses from wasteheat', 'houses from H2heat', 't iron'],
         datasets: [{
-        label: '# of Votes',
-        data: [0, 0, 0, 0, 0]
+        label: 'Anwendung',
+        data: [15, 20, 35, 53, 25],
+        backgroundColor: ["red", "blue", "green", "yellow", "gray"]
         }]
     },
     options: {
