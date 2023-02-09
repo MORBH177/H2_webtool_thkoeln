@@ -31,17 +31,17 @@
       </div>
       <div>
         <label for="sl2">Wind Onshore:</label>
-        <input type="range" id="sl2" min="0" max="100" value="50" oninput="updateText2(this.value)">
+        <input type="range" id="sl2" min="0" max="100" value="50" oninput="updateText2(this.value)" onchange="updatePlot()">
         <input type="text" id="textWindC" value="50" align="center" onchange="updateSlider2(this.value)">
       </div>
       <div>
         <label for="sl3">Wind Offshore:</label>
-        <input type="range" id="sl3" min="0" max="100" value="50" oninput="updateText3(this.value)">
+        <input type="range" id="sl3" min="0" max="100" value="50" oninput="updateText3(this.value)" onchange="updatePlot()">
         <input type="text" id="textWindO" value="50" min="0" max="100" align="center" onchange="updateSlider3(this.value)">
       </div>
       <div>
           <label for="sl4">Elektrolyseur:</label>
-          <input type="range" id="sl4" min="1" max="100" value="50" oninput="updateText4(this.value)">
+          <input type="range" id="sl4" min="1" max="100" value="50" oninput="updateText4(this.value)" onchange="updatePlot()">
           <input type="text" id="textPem" value="50" min="0" align="center" onchange="updateSlider4(this.value)">
       </div>
     
@@ -74,10 +74,10 @@
       <div>
         <canvas id="plot" width="400" height="400"></canvas>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="plot.js"></script>
+        
       </div>
       
-
+    <script src="plot.js"></script>
       
     </div>
   </body>

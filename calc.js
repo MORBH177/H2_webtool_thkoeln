@@ -23,7 +23,7 @@ function updateText4(val) {
 
 //update Slider PEM als maximal Summe aller Generatorleistungen
 function updateMax() {
-  const maxUse = 0.8;
+  const maxUse = 0.9;
   var max = parseInt(document.getElementById("sl1").value) + parseInt(document.getElementById("sl2").value) + parseInt(document.getElementById("sl3").value);
   if (max < 1) {
     max = 1 / maxUse;
@@ -73,7 +73,7 @@ function updateSlider3(val){
 }
 
 function updateSlider4(val){
-  const maxUse = 0.8;
+  const maxUse = 0.9;
   var max = parseInt(document.getElementById("sl1").value) + parseInt(document.getElementById("sl2").value) + parseInt(document.getElementById("sl3").value);
   if (max < 1) {
     max = 1 / maxUse;
