@@ -1,0 +1,238 @@
+<!Doctype html>
+<html>
+      <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+      </head>
+
+    <body>
+      <script>
+        var myChart;
+
+
+        Chart.defaults.scales.linear.min = 0;
+        function schrott(){
+
+          var xValues =['Kosten AEL','Kosten PEM','Kosten SOE'];
+          var yValues =[parseFloat(document.getElementById('output9').innerText),parseFloat(document.getElementById('output10').innerText),parseFloat(document.getElementById('output11').innerText)];
+          var barColors = ["red", "green","blue"];
+          myChart = new Chart("pie", {
+          type: "bar",
+          data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+          },
+          options: {
+            legend: {display: false},
+            title: {
+              display: true,
+              text: "spezifische Kosten pro Kilogramm Wasserstoff"
+              },
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            }
+          
+          }
+          });
+        
+        };
+        function des(){
+          if (myChart != undefined) {
+              myChart.destroy();
+            };
+        };
+
+      </script>
+      <py-config >
+        packages = ["matplotlib", "pandas", "javascript"]
+    
+      </py-config>   
+      
+      <py-script >
+        
+        
+        import js
+        import asyncio
+        import pyodide
+        import pandas as pd
+        import matplotlib.pyplot as plt
+        from pyodide.http import open_url
+        from pyodide.ffi import create_proxy
+        
+
+        def on_click(WKA):
+          eta_PEM=Element('eta_PEM').element.value
+          Element('output12').element.innerText=eta_PEM
+          eta=Element('eta_elek').element.value
+          Element('output1').element.innerText=eta
+          eta_SOE=Element('eta_SOE').element.value
+          Element('output13').element.innerText=eta_SOE
+          WKA_value=Element('WKA').element.value
+          Element('output').element.innerText=WKA_value
+          calc(volllast_val,eta,eta_PEM,eta_SOE,WKA_value)
+
+        def on_click1(eta_elek):
+          eta_PEM=Element('eta_PEM').element.value
+          Element('output12').element.innerText=eta_PEM
+          eta=Element('eta_elek').element.value
+          Element('output1').element.innerText=eta
+          eta_SOE=Element('eta_SOE').element.value
+          Element('output13').element.innerText=eta_SOE
+          calc(volllast_val,eta,eta_PEM,eta_SOE,WKA_value)
+
+        def on_click3(eta_PEM):
+          eta_PEM=Element('eta_PEM').element.value
+          Element('output12').element.innerText=eta_PEM
+          eta=Element('eta_elek').element.value
+          Element('output1').element.innerText=eta
+          eta_SOE=Element('eta_SOE').element.value
+          Element('output13').element.innerText=eta_SOE
+          calc(volllast_val,eta,eta_PEM,eta_SOE,WKA_value)
+          
+        def on_click4(eta_SOE):
+          eta_PEM=Element('eta_PEM').element.value
+          Element('output12').element.innerText=eta_PEM
+          eta=Element('eta_elek').element.value
+          Element('output1').element.innerText=eta
+          eta_SOE=Element('eta_SOE').element.value
+          Element('output13').element.innerText=eta_SOE
+          calc(volllast_val,eta,eta_PEM,eta_SOE,WKA_value)
+          
+        def on_click2(volllast):
+          eta_PEM=Element('eta_PEM').element.value
+          Element('output12').element.innerText=eta_PEM
+          eta=Element('eta_elek').element.value
+          Element('output1').element.innerText=eta
+          eta_SOE=Element('eta_SOE').element.value
+          Element('output13').element.innerText=eta_SOE
+          volllast_val=Element('volllast').element.value
+          Element('output3').element.innerText=volllast_val
+          calc(volllast_val,eta,eta_PEM,eta_SOE,WKA_value)
+
+        def calc(volllast_val,eta,eta_PEM,eta_SOE,WKA_value):
+          elek_ael=1000 #https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Dec/IRENA_Green_hydrogen_cost_2020.pdf?rev=4ce868aa69b54674a789f990e85a3f00
+          elek_pem=1400
+          elek_soe=2000
+          ungefähre_nutzung_elek=0.8
+          ungefähre_nutzung_elek_PEM=0.9
+          ungefähre_nutzung_elek_SOE=0.75
+          hy_low=39.39
+          wka_pro_kw=1030 #http://www.solar-und-windenergie.de/windenergie/kosten-und-bau-windkraftanlagen.html
+
+          T_hy_AEL=float(WKA_value)*ungefähre_nutzung_elek*float(volllast_val)*(float(eta)/100.00)/hy_low/1000
+          T_hy_AEL=round(T_hy_AEL,2)
+
+          T_hy_PEM=float(WKA_value)*ungefähre_nutzung_elek_PEM*float(volllast_val)*(float(eta_PEM)/100.00)/hy_low/1000
+          T_hy_PEM=round(T_hy_PEM,2)
+
+          T_hy_SOE=float(WKA_value)*ungefähre_nutzung_elek_SOE*float(volllast_val)*(float(eta_SOE)/100.00)/hy_low/1000
+          T_hy_SOE=round(T_hy_SOE,2)
+
+          kosten_erzeuger=float(WKA_value)*wka_pro_kw
+          kosten_elek_ael=float(WKA_value)*elek_ael
+          kosten_elek_pem=float(WKA_value)*elek_pem
+          kosten_elek_soe=float(WKA_value)*elek_soe
+
+          kosten_hy_ael=(kosten_erzeuger+kosten_elek_ael)/(T_hy_AEL*1000)
+          kosten_hy_pem=(kosten_erzeuger+kosten_elek_pem)/(T_hy_PEM*1000)
+          kosten_hy_soe=(kosten_erzeuger+kosten_elek_soe)/(T_hy_SOE*1000)
+
+          
+          Element('output4').element.innerText=T_hy_AEL
+          Element('output14').element.innerText=T_hy_PEM
+          Element('output15').element.innerText=T_hy_SOE
+          Element('output5').element.innerText=round(kosten_erzeuger/1000,2)
+          Element('output6').element.innerText=round(kosten_elek_ael/1000,2)
+          Element('output7').element.innerText=round(kosten_elek_pem/1000,2)
+          Element('output8').element.innerText=round(kosten_elek_soe/1000,2)
+          Element('output9').element.innerText=round(kosten_hy_ael,2)
+          Element('output10').element.innerText=round(kosten_hy_pem,2)
+          Element('output11').element.innerText=round(kosten_hy_soe,2)
+          js.des()
+          js.schrott()
+        
+
+
+        WKA = js.document.getElementById('WKA')
+        WKA.addEventListener('change', pyodide.create_proxy(on_click))
+        WKA_value=Element('WKA').element.value
+        Element('output').element.innerText=WKA_value
+
+        eta_elek = js.document.getElementById('eta_elek')
+        eta_elek.addEventListener('change', pyodide.create_proxy(on_click1))
+        eta=Element('eta_elek').element.value
+        Element('output1').element.innerText=eta
+
+        eta_PEM = js.document.getElementById('eta_PEM')
+        eta_PEM.addEventListener('change', pyodide.create_proxy(on_click3))
+        eta_PEM=Element('eta_PEM').element.value
+        Element('output12').element.innerText=eta_PEM
+
+        eta_SOE = js.document.getElementById('eta_SOE')
+        eta_SOE.addEventListener('change', pyodide.create_proxy(on_click4))
+        eta_SOE=Element('eta_SOE').element.value
+        Element('output13').element.innerText=eta_SOE
+
+        volllast = js.document.getElementById('volllast')
+        volllast.addEventListener('change', pyodide.create_proxy(on_click2))
+        volllast_val=Element('volllast').element.value
+        Element('output3').element.innerText=volllast_val
+
+        calc(volllast_val,eta,eta_PEM,eta_SOE,WKA_value)
+
+            
+
+
+      </py-script>
+
+
+      <div >
+        Leistung Erzeugeranlage: <label id="output"></label>[kW]<br>
+        <input type="range" id="WKA" name="WKA" step="100" min="100" max="15000" value="6000" >
+      </div>
+      <div >
+        Volllaststunden: <label id="output3"></label>[h]<br>
+        <input type="range" id="volllast" name="volllast" min="10" max="8760" value="4500" step="10">
+      </div>
+      <div >
+        Wirkungsgrad AEL: <label id="output1"></label>[%]<br>
+        <input type="range" id="eta_elek" name="eta_elek" min="5" max="100" value="40" step="5">
+      </div>
+      <div >
+        Wirkungsgrad PEM: <label id="output12"></label>[%]<br>
+        <input type="range" id="eta_PEM" name="eta_PEM" min="5" max="100" value="55" step="5">
+      </div>
+      <div >
+        Wirkungsgrad SOE: <label id="output13"></label>[%]<br>
+        <input type="range" id="eta_SOE" name="eta_SOE" min="5" max="100" value="75" step="5">
+      </div>
+      <div >
+        Kosten Erzeugeranlage <label id="output5" name="Erzeugeranlage"></label>[€]<br>
+      
+        Investitionskosten AEL  <label id="output6" name="AEL"></label>[€]<br>
+        Investitionskosten PEM  <label id="output7"></label>[€]<br>
+        Investitionskosten SOE   <label id="output8"></label>[€]<br>
+
+        Wasserstoffmenge AEL: <label id="output4"></label>[T]<br>
+        Wasserstoffmenge PEM: <label id="output14"></label>[T]<br>
+        Wasserstoffmenge SOE: <label id="output15"></label>[T]<br>
+
+        Wasserstoffkosten AEL  <label id="output9"></label>[€/kg]<br>
+        Wasserstoffkosten PEM  <label id="output10"></label>[€/kg]<br>
+        Wasserstoffkosten SOE   <label id="output11"></label>[€/kg]<br>
+      </div>
+
+      <canvas id="pie" style="width:100%;max-width:700px"></canvas>
+      
+    </body>
+</html>
+
