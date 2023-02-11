@@ -116,7 +116,7 @@
   top: 128px;
   left: 110px;
   color: rgba(255, 255, 255, 1);
-  width: 604px;
+  width: 700px;
   height: auto;
   position: absolute;
   font-size: 20px;
@@ -566,15 +566,15 @@
 }
 .frame1-text28 {
   top: 61.9244384765625px;
-  left: 44px;
+  left: 48px;
   color: rgba(255, 255, 255, 1);
   width: 113px;
   height: auto;
   position: absolute;
-  font-size: 27.071779251098633px;
+  font-size: 15px;
   align-self: auto;
   font-style: SemiCondensed;
-  text-align: center;
+  text-align: left;
   font-family: Myriad Pro;
   font-weight: 400;
   line-height: normal;
@@ -582,7 +582,7 @@
   text-decoration: none;
 }
 .frame1-vector5 {
-  top: 15px;
+  top: 10px;
   left: 85.510009765625px;
   width: 32px;
   height: 39px;
@@ -745,7 +745,7 @@
   text-decoration: none;
 }
 .frame1-text44 {
-  top: 871px;
+  top: 860px;
   left: 200px;
   color: rgba(255, 255, 255, 1);
   width: 164px;
@@ -1030,14 +1030,14 @@
 }
 .frame1-materialsymbolsarrowoutwardrounded2 {
   top: 925px;
-  left: 404px;
+  left: 381px;
   width: 24px;
   height: 24px;
   position: absolute;
 }
 .frame1-materialsymbolsarrowoutwardrounded3 {
   top: 1086px;
-  left: 673px;
+  left: 649px;
   width: 24px;
   height: 24px;
   position: absolute;
