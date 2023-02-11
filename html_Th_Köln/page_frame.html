@@ -149,8 +149,7 @@
                     <span class="frame1-text06"><span>Mögliche Versorgung</span></span>
                     <span class="frame1-text08">
                       <span>
-                        Willkommen auf der offiziellen Seite des Wasserstoffrechners der TH Köln. Sie können hier
-                        einen Überblick über die Nutzung von Wasserstoff erhalten. 
+                        Willkommen auf der offiziellen Seite des Wasserstoffrechners der TH Köln. 
                       </span>
                     </span>
                     <span class="frame1-text10">
@@ -162,7 +161,7 @@
                     <span class="frame1-text12">0</span>
                     <span class="frame1-text13">
                       <span class="frame1-text14">100</span>
-                      <span>MW</span>
+                      <span>MWp</span>
                     </span>
                     <span class="frame1-text16">
                       <span class="frame1-text17">100</span>
@@ -181,15 +180,27 @@
                     <span class="frame1-text27">0</span>
                     <div class="frame1-frame-slider-human-interface-guidelines">
                       <input class="frame1-slider" type="range" id="PV-Eingabe" name="PV-Slider" step="1" min="0" max="100" value="30" >
+                      <span class="tooltiptext-PV">
+                        Hier können Sie die installierte Leistung <br> der PV-Anlagen bis 100 MWp angeben.
+                      </span>
                     </div>
                     <div class="frame1-frame-slider-human-interface-guidelines1">
                       <input class="frame1-slider" type="range" id="WKA_OnShore-Eingabe" name="WKA_OnShore" step="1" min="0" max="100" value="30" >
+                      <span class="tooltiptext-Wka-On">
+                        Hier können Sie die Onshore installierte Leistung<br> der Windkraftanlagen bis 100 MW angeben.
+                      </span>
                     </div>
                     <div class="frame1-frame-slider-human-interface-guidelines2">
                       <input class="frame1-slider" type="range" id="WKA_OffShore-Eingabe" name="WKA_OffShore" step="1" min="0" max="100" value="30" >
+                      <span class="tooltiptext-Wka-Off">
+                        Hier können Sie die Offshore installierte Leistung<br> der Windkraftanlagen bis 100 MW angeben.
+                      </span>
                     </div>
                     <div class="frame1-frame-slider-human-interface-guidelines3">
                       <input class="frame1-slider" type="range" id="Elektrolyseur-Eingabe" name="Elektrolyseur" step="1" min="0" max="100" value="30" >
+                      <span class="tooltiptext-Elek">
+                        Hier können Sie die  installierte Leistung<br> der PEM-Elektrolyse bis 100 MW angeben.
+                      </span>
                     </div>
                     <img
                       src="public/playground_assets/vector744-gegf.svg"
@@ -211,6 +222,8 @@
                       alt="Vector748"
                       class="frame1-vector3"
                     />
+                    
+
                     <img
                       src="public/playground_assets/vector751-0gtf.svg"
                       alt="Vector751"
@@ -225,9 +238,9 @@
                       />
                     </div>
                     <span class="frame1-text30"><span><label id="output_eingabe_PV"></label></span></span>
-                    <span class="frame1-text32"><span>30</span></span>
-                    <span class="frame1-text34"><span>30</span></span>
-                    <span class="frame1-text36"><span>30</span></span>
+                    <span class="frame1-text32"><span><label id="output_eingabe_WKA_OnShore"></label></span></span>
+                    <span class="frame1-text34"><span><label id="output_eingabe_WKA_OffShore"></label></span></span>
+                    <span class="frame1-text36"><span><label id="output_eingabe_Elektrolyse"></label></span></span>
                     <img
                       src="public/playground_assets/rectangle188144-nl2k.svg"
                       alt="Rectangle188144"

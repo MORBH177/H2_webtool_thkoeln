@@ -533,6 +533,8 @@
   height: 44px;
   position: absolute;
 }
+
+
 .frame1-vector4 {
   top: 607px;
   left: 207px;
@@ -1225,4 +1227,102 @@
   height: 65px;
   position: absolute;
   border-color: transparent;
+}
+
+/*Hover*/
+.frame1-frame-slider-human-interface-guidelines:hover .tooltiptext-PV {
+  visibility: visible;
+  transition-delay: 0.3s;
+}
+
+
+.frame1-frame-slider-human-interface-guidelines .tooltiptext-PV {
+  visibility: hidden;
+  padding: 0.25em 0.5em;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.25em;
+  white-space: nowrap;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 100%;
+  transition-property: visibility;
+  transition-delay: 0s;
+}
+
+
+.frame1-frame-slider-human-interface-guidelines1:hover .tooltiptext-Wka-On {
+  visibility: visible;
+  transition-delay: 0.3s;
+}
+
+
+.frame1-frame-slider-human-interface-guidelines1 .tooltiptext-Wka-On {
+  visibility: hidden;
+  padding: 0.25em 0.5em;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.25em;
+  white-space: nowrap;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 100%;
+  transition-property: visibility;
+  transition-delay: 0s;
+}
+
+.frame1-frame-slider-human-interface-guidelines2:hover .tooltiptext-Wka-Off {
+  visibility: visible;
+  transition-delay: 0.3s;
+}
+
+
+.frame1-frame-slider-human-interface-guidelines2 .tooltiptext-Wka-Off {
+  visibility: hidden;
+  padding: 0.25em 0.5em;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.25em;
+  white-space: nowrap;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 100%;
+  transition-property: visibility;
+  transition-delay: 0s;
+}
+
+.frame1-frame-slider-human-interface-guidelines3:hover .tooltiptext-Elek {
+  visibility: visible;
+  transition-delay: 0.3s;
+}
+
+
+.frame1-frame-slider-human-interface-guidelines3 .tooltiptext-Elek {
+  visibility: hidden;
+  padding: 0.25em 0.5em;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.25em;
+  white-space: nowrap;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 100%;
+  transition-property: visibility;
+  transition-delay: 0s;
 }
