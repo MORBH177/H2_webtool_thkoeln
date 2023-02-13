@@ -1,3 +1,62 @@
+
+class H2tool{
+  pvSlider = null;
+  pvInput = null;
+  pv = 50;
+
+  constructor(){
+    this.init();
+    this.addEvents();
+  }
+
+ init(){
+  const tmpPvSlider = document.querySelector('#sl1')
+  if(tmpPvSlider != null && tmpPvSlider != undefined ){
+    this.pvSlider = tmpPvSlider;
+  }
+
+  const tmpPvInput = document.querySelector('#textPv')
+  if(tmpPvInput != null && tmpPvInput != undefined ){
+    this.pvInput = tmpPvInput;
+  }
+ }
+
+ addEvents(){
+  if(this.pvInput != null && this.pvInput != undefined ){
+    this.pvInput.addEventListener('input' , (e) => {
+      this.pv = this.pvInput.value;
+      this.pvSlider.value = this.pv;
+      //all other functions
+    });
+    this.pvInput.addEventListener('change' , (e) => {
+      
+    });
+  }
+
+  if(this.pvSlider != null && this.pvSlider != undefined ){
+    this.pvSlider = addEventListener('input' , (e) => {
+      this.pvInput.value = this.pvSlider.value;
+      this.pvInput.dispatchEvent(new Event('change',{}));
+    });
+  }
+ }
+
+  updateMax() {
+    const maxUse = 0.9;
+    var max = parseInt(this.pv) + parseInt(document.getElementById("sl2").value) + parseInt(document.getElementById("sl3").value);
+    if (max < 1) {
+      max = 1 / maxUse;
+      updateText4(max * maxUse);
+    }
+
+    document.getElementById("sl4").max = max * maxUse;
+  }
+}
+
+document.addEventListener('DOMContentLoaded',() => {
+  const h2tool = new H2tool();
+});
+
 //Update Textfeld anhand von Sliderstellung
 function updateText1(val) {
   document.getElementById("textPv").value = val;
@@ -30,8 +89,8 @@ function updateMax() {
     updateText4(max * maxUse);
   }
   document.getElementById("sl4").max = max * maxUse;
-  
 }
+
 
 function updateSlider1(val){
   if (val < 0) {
@@ -88,4 +147,8 @@ function updateSlider4(val){
   } else {
     document.getElementById("sl4").value = val;
   }
+}
+
+function main() {
+
 }

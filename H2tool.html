@@ -3,16 +3,19 @@
   <head>
     <title>H2 Webtool</title>
     <meta charset="utf-8">
-    <script src="calc.js"></script>
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-    
-    <py-env>
+    <py-env class="d-none">
     - numpy
     - pandas
     - paths:
       - ./erz_data.csv
     </py-env>
+    <style>
+      .d-none{
+        display:none;
+      }
+    </style>
   </head>
   <body>
     
@@ -76,9 +79,11 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         
       </div>
-      
-    <script src="plot.js"></script>
-      
     </div>
   </body>
+  <footer>
+    <p>© 2023 by TH-Köln</p>
+    <script src="calc.js"></script>
+    <script src="plot.js"></script>
+  </footer>
 </html>
