@@ -16,10 +16,10 @@ from pyodide.ffi.wrappers import add_event_listener
 
 # get html objects
 #   sliders
-slider_pv = document.getElementById("sl1")
-slider_windC = document.getElementById("sl2")
-slider_windO = document.getElementById("sl3")
-slider_electrolysis = document.getElementById("sl4")
+slider_pv = document.getElementById("PV-Eingabe")
+slider_windC = document.getElementById("WKA_OnShore-Eingabe")
+slider_windO = document.getElementById("WKA_OffShore-Eingabe")
+slider_electrolysis = document.getElementById("Elektrolyseur-Eingabe")
 #   output boxes
 energy_input = document.getElementById("en_zu")
 water_input = document.getElementById("h2o")

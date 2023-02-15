@@ -335,15 +335,43 @@
   border-radius: 2px;
 }
 .frame1-slider {
-  top: 8px;
+  -webkit-appearance: none; /* ob wir den Slider mit webkit anpassen müssenwir noch rausfinden */
+  top: 14px;
   left: 0px;
   width: 380px;
+  height: 8px;
+  border-radius: 16px;
+  outline: none;
   display: flex;
   position: absolute;
   align-items: flex-start;
   flex-shrink: 0;
   border-color: transparent;
-  }
+}
+
+.frame1-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border-color: #000000;
+  border-width: 5px;
+  cursor: pointer;
+  box-shadow: 0px 0.5px 4px 0px rgba(0, 0, 0, 0.11999999731779099);
+  margin-top: -5px;
+}
+
+.frame1-slider::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #b62584;
+}
+
+
+
+
 .frame1-rounded-rect {
   top: 12px;
   left: 0px;
