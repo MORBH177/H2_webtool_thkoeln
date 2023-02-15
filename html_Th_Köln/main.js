@@ -33,55 +33,60 @@ class H2tool{
       this.init();
       this.addEvents();
       console.log('H2tool initialized');
-      console.log(typeof this.pvSlider);
     }
   
    init(){
     // pv slider + inputfeld
     const tmpPvSlider = document.querySelector('#PV-Eingabe')
-    console.log(tmpPvSlider);
-    console.log(typeof tmpPvSlider);
     if(tmpPvSlider != null && tmpPvSlider != undefined ){
       this.pvSlider = tmpPvSlider;
-      console.log(typeof this.pvSlider);
+      this.pvSlider.value = 50;
     }
   
     const tmpPvInput = document.querySelector('#output_eingabe_PV')
     if(tmpPvInput != null && tmpPvInput != undefined ){
       this.pvInput = tmpPvInput;
+      this.pvInput.value = 50;
+
     }
 
     // Wind Onshore slider + inputfeld
     const tmpWindCSlider = document.querySelector('#WKA_OnShore-Eingabe')
     if(tmpWindCSlider != null && tmpWindCSlider != undefined ){
-      this.windCSlider = tmpWindCInput;
+      this.windCSlider = tmpWindCSlider;
+      this.windCSlider.value = 50;
     }
   
     const tmpWindCInput = document.querySelector('#output_eingabe_WKA_OnShore')
     if(tmpWindCInput != null && tmpWindCInput != undefined ){
       this.windCInput = tmpWindCInput;
+      this.windCInput.value = 50;
     }
 
     // Wind Offshore slider + inputfeld
     const tmpWindOSlider = document.querySelector('#WKA_OffShore-Eingabe')
     if(tmpWindOSlider != null && tmpWindOSlider != undefined ){
-      this.windOSlider = tmpWindOInput;
+      this.windOSlider = tmpWindOSlider;
+      this.windOSlider.value = 50;
     }
   
     const tmpWindOInput = document.querySelector('#output_eingabe_WKA_OffShore')
     if(tmpWindOInput != null && tmpWindOInput != undefined ){
-      this.pvInput = tmpPvInput;
+      this.windOInput = tmpWindOInput;
+      this.windOInput.value = 50;
     }
 
     // pem slider + inputfeld
     const tmpPemSlider = document.querySelector('#Elektrolyseur-Eingabe')
     if(tmpPemSlider != null && tmpPemSlider != undefined ){
-      this.pvSlider = tmpPvSlider;
+      this.pemSlider = tmpPemSlider;
+      this.pemSlider.value = 50;
     }
   
     const tmpPemInput = document.querySelector('#output_eingabe_Elektrolyse')
     if(tmpPemInput != null && tmpPemInput != undefined ){
       this.pemInput = tmpPemInput;
+      this.pemInput.value = 50;
     }
 
     // ouptutfelder
@@ -140,9 +145,70 @@ class H2tool{
         //all other functions
       };
     }
-    
-    
-   }
+
+    // wind onshore slider + inputfeld
+    if(this.windCSlider != null && this.windCSlider != undefined ){
+      this.windCSlider.oninput = () => {
+        this.windC = this.windCSlider.value;
+        this.windCInput.value = this.windCSlider.value;
+      };
+    }
+    if(this.windCInput != null && this.windCInput != undefined ){
+      this.windCInput.oninput = () => {
+        if (this.windCInput.value > 100) {
+          this.windCInput.value = 100;
+        } else if (this.windCInput.value < 0) {
+          this.windCInput.value = 0;
+        }
+        this.windC = this.windCInput.value;
+        this.windCSlider.value = this.windC;
+        //all other functions
+      };
+    }
+
+    // wind offshore slider + inputfeld
+    if(this.windOSlider != null && this.windOSlider != undefined ){
+      this.windOSlider.oninput = () => {
+        this.windO = this.windOSlider.value;
+        this.windOInput.value = this.windOSlider.value;
+      };
+    }
+    if(this.windOInput != null && this.windOInput != undefined ){
+      this.windOInput.oninput = () => {
+        if (this.windOInput.value > 100) {
+          this.windOInput.value = 100;
+        } else if (this.windOInput.value < 0) {
+          this.windOInput.value = 0;
+        }
+        this.windO = this.windOInput.value;
+        this.windOSlider.value = this.windO;
+        //all other functions
+      };
+    }
+
+    // pem slider + inputfeld
+    if(this.pemSlider != null && this.pemSlider != undefined ){
+      this.pemSlider.oninput = () => {
+        this.pem = this.pemSlider.value;
+        this.pemInput.value = this.pemSlider.value;
+      };
+    }
+    if(this.pemInput != null && this.pemInput != undefined ){
+      this.pemInput.oninput = () => {
+        if (this.pemInput.value > 100) {
+          this.pemInput.value = 100;
+        } else if (this.pemInput.value <= 0) {
+          this.pemInput.value = 1;
+        }
+        this.pem = this.pemInput.value;
+        this.pemSlider.value = this.pem;
+        //all other functions
+      };
+    }
+
+
+  
+   } //end addEvents
   
     updateMax() {
       const maxUse = 0.9;

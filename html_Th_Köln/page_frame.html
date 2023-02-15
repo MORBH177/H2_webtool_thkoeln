@@ -164,7 +164,10 @@
                          </ul>
                       </span>
                     </span>
-                    <span class="frame1-text12">0</span>
+                    <span class="frame1-text12">
+                      <input type="text" class="inPV" id="output_eingabe_PV">
+                    </span>
+                    
                     <span class="frame1-text13">
                       <span class="frame1-text14">MWp</span>
                     </span>
@@ -177,10 +180,17 @@
                     <span class="frame1-text22">
                       <span class="frame1-text23">MW</span>
                     </span>
-                    <span class="frame1-text25">0</span>
-                    <span class="frame1-text26">0</span>
-                    <span class="frame1-text27">0</span>
+                    <span class="frame1-text25">
+                      <input type="text" class="inPV" id="output_eingabe_WKA_OnShore">
+                    </span>
+                    <span class="frame1-text26">
+                      <input type="text" class="inPV" id="output_eingabe_WKA_OffShore">
+                    </span>
+                    <span class="frame1-text27">
+                      <input type="text" class="inPV" id="output_eingabe_Elektrolyse">
+                    </span>
                     <div class="frame1-frame-slider-human-interface-guidelines">
+                      
                       <input class="frame1-slider" type="range" id="PV-Eingabe" name="PV-Slider" step="1" min="0" max="100" value="30" >
                       <span class="tooltiptext-PV">
                         Hier können Sie die installierte Leistung <br> der PV-Anlagen bis 100 MWp angeben.
@@ -199,7 +209,7 @@
                       </span>
                     </div>
                     <div class="frame1-frame-slider-human-interface-guidelines3">
-                      <input class="frame1-slider" type="range" id="Elektrolyseur-Eingabe" name="Elektrolyseur" step="1" min="0" max="100" value="30" >
+                      <input class="frame1-slider" type="range" id="Elektrolyseur-Eingabe" name="Elektrolyseur" step="1" min="1" max="100" value="30" >
                       <span class="tooltiptext-Elek">
                         Hier können Sie die  installierte Leistung<br> der PEM-Elektrolyse bis 100 MW angeben.
                       </span>
@@ -368,7 +378,7 @@
                 </div>
               </div>
         </div>
-        <script src="main.js"></script>
+        
     </div>
     <div id="navigation">
         <p><strong>2. Navigation Menu</strong></p>
@@ -399,7 +409,9 @@
             <li>And more</li>
         </ul>
     </div>
-    <div id="footer"><p>Footer</p>
+    <div id="footer">
+    <script src="main.js"></script>
+    <p>Footer</p>
     </div>
 </div>
 <script type="text/javascript">AddFillerLink("content", "navigation", "extra")</script>
