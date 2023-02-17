@@ -32,6 +32,6 @@
 
 <ul>
   <li>id="output_Autos"</li>
-  <li>id="output_Züge"</li>
+  <li>id="output_Busse"</li>
   <li>id="output_Häuser"</li>
 </ul>
