@@ -11,6 +11,7 @@ var config = {
     },
     options: {
         //responsive: true,
+        indexAxis: 'y',
         plugins: {
             legend: {
                 display: false
