@@ -7,52 +7,154 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Elektrolyse-Rechner der TH Köln</title>
     <link rel="stylesheet" href="general_settings.css">
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="inputs.css">
+    <link rel="stylesheet" href="h2tool-styles.css">
 </head>
 
 <body>
-    <header>
-        <div class="header-container">
-            <div class="header-text">
-                <h1>Elektrolyse-Rechner der TH Köln</h1>
-                <p class="subheading">Willkommen auf der offiziellen Seite des Elektrolyse-Rechners der TH Köln.</p>   
+    <div class="h2webtool-container">
+        <div class="header">
+            <div class="title-text">
+                <h1>Elektrolyse-Rechner der TH-Köln</h1>
+                <p>Der Elektrolyse-Rechner der TH Köln berechnet die Herstellung von Wasserstoff aus erneuerbaren Energien.</p>
             </div>
-            <div class="header-image">
-                <img src="public/TH_Koeln_Logo.svg.png" alt="Logo der TH Köln" class="head-logo">
-            </div>  
+            <div class="title-image">
+                <img src="public/TH_Koeln_Logo.svg.png" alt="Logo der TH Köln" class="title-logo">
+            </div>
         </div>
-    </header>
-    <section id="input-section">
-        <div class="eingabe-container">
-            <h2>Eingaben</h2>
+        <div class="input-container">
+            <div class="eingabe-title">
+                <h2>Eingabe</h2>
+            </div>
+            <div class="icon-pv">
+                <img src="public/pv_icon.svg" alt="PV-Icon" class="pv-icon">
+            </div>
+            <div class="icon-wind-on">
+                <img src="public/wind_onshore_icon.svg" alt="Wind-Onshore-Icon" class="wind-on-icon">
+            </div>
+            <div class="icon-wind-off">
+                <img src="public/wind_offshore_icon.svg" alt="Wind-Offshore-Icon" class="wind-off-icon">
+            </div>
+            <div class="icon-pem">
+                <img src="public/electrolyzer2.svg" alt="PEM-Icon" class="pem-icon">
+            </div>
             <div class="eingabe-pv">
-                <img
-                    src="public/playground_assets/vector748-hgg.svg"
-                    alt="Vector748"
-                    class="frame1-vector3"
-                />
-                <input type="text" class="inPV" value="30" id="output_eingabe_PV">
-                <input class="frame1-slider" type="range" id="PV-Eingabe" name="PV-Slider" step="1" min="0" max="100" value="30">
-                <span class="frame1-text14">MWp</span>
-
+                <input type="text" class="input-fields" value="30" id="output_eingabe_PV">
             </div>
             <div class="eingabe-wind-onshore">
-
+                <input type="text" class="input-fields" value="30" id="output_eingabe_WKA_OnShore">
             </div>
             <div class="eingabe-wind-offshore">
-
+                <input type="text" class="input-fields" value="30" id="output_eingabe_WKA_OffShore">
             </div>
             <div class="eingabe-pem">
-
+                <input type="text" class="input-fields" value="30" id="output_eingabe_Elektrolyse">
+            </div>
+            <div class="area-slider-pv">
+                <input class="slider" type="range" id="PV-Eingabe" name="PV-Slider" step="1" min="0" max="100" value="30">
+            </div>
+            <div class="area-slider-wind-on">
+                <input class="slider" type="range" id="WKA_OnShore-Eingabe" name="WKA_OnShore" step="1" min="0" max="100" value="30">
+            </div>
+            <div class="area-slider-wind-off">
+                <input class="slider" type="range" id="WKA_OffShore-Eingabe" name="WKA_OffShore" step="1" min="0" max="100" value="30">
+            </div>
+            <div class="area-slider-pem">
+                <input class="slider" type="range" id="Elektrolyseur-Eingabe" name="Elektrolyseur" step="1" min="1" max="100" value="30">
+            </div>
+            <div class="unit-pv"><span class="unit-text">MWp</span></div>
+            <div class="unit-wind-on"><span class="unit-text">MW</span></div>
+            <div class="unit-wind-off"><span class="unit-text">MW</span></div>
+            <div class="unit-pem"><span class="unit-text">MW</span></div>
+        </div>
+        <div class="output-container">
+            <div class="ergebnisse-title">
+                <h2>Ergebnisse</h2>
+            </div>
+            <div class="output-values">
+                <div class="out-val-pem-operation">
+                    <span class="output-text-fields">Volllaststunden [h]</span>
+                    <input type="text" class="outputfields" id="output_volllaststunden" disabled>
+                    <span class="output-text-fields">genutzte<br>Strommenge<br>[MWh_el]</span>
+                    <input type="text" class="outputfields" id="output_genutzte_Energie" disabled>
+                    <span class="output-text-fields">Wasser [m³]</span>
+                    <input type="text" class="outputfields" id="output_Wasser" disabled>
+                </div>
+                <div class="out-val-pem-image">
+                    <img src="public/electrolysis.svg" alt="graphic-pem" class="pem-graphic">
+                </div>
+                <div class="out-val-pem-generation">
+                    <span class="output-text-fields">Wasserstoff [t]</span>
+                    <input type="text" class="outputfields" id="output_Wasserstoff" disabled>
+                    <span class="output-text-fields">H2<br>Energieinhalt<br>[MWh]</span>
+                    <input type="text" class="outputfields" id="output_Wasserstoff_energy" disabled>
+                    <span class="output-text-fields">Sauerstoff [t]</span>
+                    <input type="text" class="outputfields" id="output_Sauerstoff" disabled>
+                    <span class="output-text-fields">Abwärme<br>[MWh_therm]</span>
+                    <input type="text" class="outputfields" id="output_Abwärme" disabled>
+                </div>
+            </div>
+            <div class="output-charts">
+                <div class="chart-title">
+                    <h3>Mögliche Versorgung</h3>
+                </div>
+                <div class="area-chart-car">
+                    <div class="car-value">
+                        <input type="text" class="outputfields-versorgung" id="output-car" disabled>
+                    </div>
+                    <div class="car-chart">
+                        <div class="rectangle-chart">
+                            <div class="carplot-div"> 
+                                <canvas id="plot-car"></canvas>
+                            </div>
+                            <img src="public/car_icon.svg" alt="car" class="car-icon">
+                        </div>
+                    </div>
+                </div>
+                <div class="area-chart-bus">
+                    <div class="bus-value">
+                        <input type="text" class="outputfields-versorgung" id="output-bus" disabled>
+                    </div>
+                    <div class="bus-chart">
+                        <div class="rectangle-chart">
+                            <div class="busplot-div">
+                                <canvas id="plot-bus"></canvas>
+                            </div>
+                            <img src="public/bus_icon.svg" alt="bus" class="bus-icon">
+                        </div>
+                    </div>
+                </div>
+                <div class="area-chart-steel">
+                    <div class="steel-value">
+                        <input type="text" class="outputfields-versorgung" id="output-steel" disabled>
+                    </div>
+                    <div class="steel-chart">
+                        <div class="rectangle-chart">
+                            <div class="steelplot-div">
+                                <canvas id="plot-steel"></canvas>
+                            </div>
+                            <img src="public/steelbeam.svg" alt="steel" class="steel-icon">
+                        </div>
+                    </div>
+                </div>
+                <div class="area-chart-house">
+                    <div class="house-value">
+                        <input type="text" class="outputfields-versorgung" id="output-house" disabled>
+                    </div>
+                    <div class="chart-house">
+                        <div class="rectangle-chart">
+                            <div class="houseplot-div">
+                                <canvas id="plot-house"></canvas>
+                            </div>
+                            <img src="public/house_icon.svg" alt="house" class="house-icon">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-    <section id="output-section">
-    
-    </section>
-
+    </div>
     <footer>
+        <script src="main.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </footer>
 
 </body>

@@ -1,0 +1,549 @@
+.h2webtool-container {  
+    padding-top: 50px;
+    padding-bottom: 25px;
+    display: grid;
+    grid-template-columns: 0.75fr;
+    grid-template-rows: 200px 350px 1000px;
+    grid-auto-columns: 1fr;
+    max-width: 1250px;
+    gap: 10px 10px;
+    grid-auto-flow: row;
+    justify-content: center;
+    align-items: stretch;
+    grid-template-areas:
+      "header"
+      "input-container"
+      "output-container"; 
+}
+  
+.header {  
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    grid-template-rows: auto;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "title-text title-image";
+    grid-area: header;
+    background-color: var(--background_dark2);
+    border-radius: var(--radius_medium);
+} 
+  
+.title-text {
+    padding-top: 25px;
+    padding-left: 25px; 
+    display: grid;
+    grid-area: title-text; 
+    align-items: center;
+    justify-items: center;
+}
+  
+.title-image { 
+    display: grid;
+    grid-area: title-image;
+    align-items: center;
+    justify-items: center;
+}
+
+.title-logo {
+    width: 175px;
+    height: 100px;
+}
+
+.input-container {  
+    display: grid;
+    grid-template-columns: 0.6fr 0.4fr 2.2fr 0.6fr;
+    grid-template-rows: 60px 60px 60px 60px 60px;
+    gap: 5px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "eingabe-title eingabe-title eingabe-title eingabe-title"
+        "icon-pv eingabe-pv area-slider-pv unit-pv"
+        "icon-wind-on eingabe-wind-onshore area-slider-wind-on unit-wind-on"
+        "icon-wind-off eingabe-wind-offshore area-slider-wind-off unit-wind-off"
+        "icon-pem eingabe-pem area-slider-pem unit-pem";
+    grid-area: input-container;
+    background-color: var(--background_dark2);
+    border-radius: var(--radius_medium);
+}
+
+.eingabe-title { 
+    padding-left: 25px;
+    grid-area: eingabe-title; 
+}
+
+.icon-pv { 
+    display: grid;
+    justify-content: right;
+    align-content: center;
+    grid-area: icon-pv; 
+}
+.pv-icon {
+    padding-right: 6px;
+    width: 40px;
+    height: 40px;
+}
+
+.icon-wind-on { 
+    display: grid;
+    justify-content: right;
+    align-content: center;
+    grid-area: icon-wind-on; 
+}
+.wind-on-icon {
+    width: 48px;
+    height: 48px;
+}
+
+
+.icon-wind-off {
+    display: grid;
+    justify-content: right;
+    align-content: center; 
+    grid-area: icon-wind-off; 
+}
+.wind-off-icon {
+    width: 48px;
+    height: 54px;
+}
+
+.icon-pem { 
+    display: grid;
+    justify-content: right;
+    align-content: center;
+    grid-area: icon-pem; 
+}
+.pem-icon {
+    padding-right: 3px;
+    width: 42px;
+    height: 44px;
+}
+
+.input-fields {
+    font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
+    font-size: 24px;
+    text-align: right;
+    width: 60px;
+    height: 30px;
+    border-color: var(--background_dark2);
+    box-shadow: none;
+    text-shadow: none;
+    border: none;
+    box-sizing: border-box;
+    border-radius: var(--radius_small);
+    background-color: var(--background_dark2);
+    color: var(--text_color);
+  }
+.eingabe-pv { 
+    display: grid;
+    justify-content: right;
+    align-content: center;
+    grid-area: eingabe-pv; 
+}
+
+.eingabe-wind-onshore { 
+    display: grid;
+    justify-content: right;
+    align-content: center;
+    grid-area: eingabe-wind-onshore; 
+}
+
+.eingabe-wind-offshore { 
+    display: grid;
+    justify-content: right;
+    align-content: center;
+    grid-area: eingabe-wind-offshore; 
+}
+
+.eingabe-pem { 
+    display: grid;
+    justify-content: right;
+    align-content: center;
+    grid-area: eingabe-pem; 
+}
+
+.area-slider-pv { 
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-area: area-slider-pv; 
+}
+
+.area-slider-wind-on { 
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-area: area-slider-wind-on; 
+}
+
+.area-slider-wind-off { 
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-area: area-slider-wind-off; 
+}
+
+.area-slider-pem { 
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-area: area-slider-pem; 
+}
+
+.slider {
+    -webkit-appearance: none; /* ob wir den Slider mit webkit anpassen müssenwir noch rausfinden */
+    appearance: none;
+    width: 39vw;
+    max-width: 500px;
+    height: 8px;
+    border-radius: 4px;
+    border-color: transparent;
+    background-color: #af368c;
+  }
+  
+.slider::-webkit-slider-thumb {
+-webkit-appearance: none;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background-color: #fff;
+border-color: #000000;
+border-width: 5px;
+cursor: pointer;
+box-shadow: 0px 0.5px 4px 0px rgba(0, 0, 0, 0.15);
+margin-top: -6px;
+}
+
+.slider::-webkit-slider-runnable-track {
+border-radius: 50%;
+height: 8px;
+z-index: 1;
+}
+
+.slider::before {
+content: "";
+position: relative;
+left: 0;
+height: 8px;
+background: #fff;
+border-radius: 5px;
+}
+
+.slider:focus::before {
+height: 12px;
+}
+  
+
+.unit-pv { 
+    display: grid;
+    justify-content: left;
+    align-content: center;
+    grid-area: unit-pv; 
+}
+
+.unit-wind-on { 
+    display: grid;
+    justify-content: left;
+    align-content: center;
+    grid-area: unit-wind-on; 
+}
+
+.unit-wind-off { 
+    display: grid;
+    justify-content: left;
+    align-content: center;
+    grid-area: unit-wind-off; 
+}
+
+.unit-pem { 
+    display: grid;
+    justify-content: left;
+    align-content: center;
+    grid-area: unit-pem; 
+}
+
+.unit-text {
+    font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
+    font-size: 24px;
+    text-align: left;
+    padding-top: 2px;
+    width: 60px;
+    height: 30px;
+    background-color: var(--background_dark2);
+    color: var(--text_color);
+}
+
+.output-container {  
+    display: grid;
+    padding-bottom: 15px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-area: output-container;
+    background-color: var(--background_dark2);
+    border-radius: var(--radius_medium);
+}
+
+.ergebnisse-title {
+    padding-left: 25px; 
+    grid-area: 1 / 1 / 4 / 2; 
+}
+
+.output-values {  
+    display: grid;
+    grid-template-columns: 0.8fr 1.4fr 0.8fr;
+    grid-template-rows: 1fr;
+    max-height: 500px;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "out-val-pem-operation out-val-pem-image out-val-pem-generation";
+    grid-area: 2 / 1 / 3 / 2;
+}
+.output-text-fields {
+    font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
+    font-size: 16px;
+    align-content: center;
+    text-align: center;
+}
+
+.outputfields {
+    display: flex;
+    text-align: center;
+    font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
+    font-size: 20px;
+    width: 140px;
+    height: 35px;
+    border-color: var(--background_dark3);
+    border-radius: var(--radius_medium);
+    box-shadow: none;
+    text-shadow: none;
+    border: none;
+    box-sizing: border-box;
+    background-color: var(--background_dark3);
+    color: var(--text_color);
+  }
+
+.out-val-pem-operation { 
+    display: grid;
+    padding-left: 15px;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    gap: 15px;
+    grid-area: out-val-pem-operation; 
+}
+
+.out-val-pem-image { 
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-area: out-val-pem-image; 
+}
+.pem-graphic {
+    width: 90%;
+    height: 90%;
+}
+
+.out-val-pem-generation { 
+    display: grid;
+    padding-right: 15px;
+    justify-content: center;
+    align-content: center;
+    gap: 15px;
+    grid-area: out-val-pem-generation; 
+}
+
+.output-charts {  
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 80px 80px 80px 80px;
+    gap: 10px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "chart-title"
+        "area-chart-car"
+        "area-chart-bus"
+        "area-chart-steel"
+        "area-chart-house";
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+.chart-title { 
+    padding-left: 25px;
+    grid-area: chart-title; 
+}
+
+.outputfields-versorgung {
+    display: grid;
+    text-align: center;
+    font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
+    font-size: 20px;
+    width: 80%;
+    height: 35px;
+    border-color: var(--background_dark3);
+    border-radius: var(--radius_medium);
+    box-shadow: none;
+    text-shadow: none;
+    border: none;
+    box-sizing: border-box;
+    background-color: var(--background_dark3);
+    color: var(--text_color);
+  }
+
+.area-chart-car {  
+    display: grid;
+    grid-template-columns: 160px 1.7fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "car-value car-chart";
+    grid-area: area-chart-car;
+}
+
+.car-value { 
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-area: car-value; 
+    padding-left: 15px;
+    padding-right: 5px;
+}
+
+.car-chart { 
+    width: 100%;
+    grid-area: car-chart; 
+}
+
+
+
+.area-chart-bus {  
+    display: grid;
+    grid-template-columns: 160px 1.7fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "bus-value bus-chart";
+    grid-area: area-chart-bus;
+}
+
+.bus-value { 
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-area: bus-value;
+    padding-left: 15px;
+    padding-right: 5px; 
+}
+
+.bus-chart { 
+    grid-area: bus-chart; 
+}
+
+.area-chart-steel {  
+    display: grid;
+    grid-template-columns: 160px 1.7fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "steel-value steel-chart";
+    grid-area: area-chart-steel;
+}
+
+.steel-value { 
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-area: steel-value; 
+    padding-left: 15px;
+    padding-right: 5px;
+}
+
+.steel-chart { 
+    grid-area: steel-chart; 
+}
+
+.area-chart-house {  
+    display: grid;
+    grid-template-columns: 160px 1.7fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "house-value chart-house";
+    grid-area: area-chart-house;
+}
+
+.house-value { 
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-area: house-value; 
+    padding-left: 15px;
+    padding-right: 5px;
+}
+
+.chart-house { 
+    grid-area: chart-house; 
+}
+
+.rectangle-chart {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--background_dark3);
+    border-radius: var(--radius_medium);
+    gap: 0 20px;
+    height: 80px;
+    width: 90%;
+}
+
+.carplot-div {
+    height: 100px;
+    width: 85%;
+}
+.car-icon {
+    padding-left: 1vw;
+    padding-right: 5%;
+    width: 33px;
+    height: 33px;
+}
+
+.busplot-div {
+    height: 100px;
+    width: 85%;
+}
+.bus-icon {
+    padding-left: 1vw;
+    padding-right: 5%;
+    width: 35px;
+    height: 35px;
+}
+
+.steelplot-div {
+    height: 100px;
+    width: 85%;
+}
+.steel-icon {
+    padding-left: 1vw;
+    padding-right: 5%;
+    width: 32px;
+    height: 32px;
+}
+
+.houseplot-div {
+    height: 100px;
+    width: 85%;
+}
+.house-icon {
+    padding-left: 1vw;
+    padding-right: 5%;
+    width: 32px;
+    height: 32px;
+}
+  
