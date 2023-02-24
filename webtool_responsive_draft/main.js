@@ -494,10 +494,10 @@ class H2tool{
       }
       if(this.pemInput != null && this.pemInput != undefined ){
         this.pemInput.oninput = () => {
-          if (this.pemInput.value > 100) {
-            this.pemInput.value = 100;
-          } else if (this.pemInput.value <= 0) {
-            this.pemInput.value = 1;
+          const maxUse = 0.9;
+          var max = parseInt(this.pv) + parseInt(this.windC) + parseInt(this.windO);
+          if (this.pemInput.value > parseInt(max * maxUse)) {
+            this.pemInput.value = parseInt(max * maxUse);
           }
           this.pem = this.pemInput.value;
           this.pemSlider.value = this.pem;
@@ -507,6 +507,8 @@ class H2tool{
         this.pemInput.onchange = () => {
           if (isNaN(this.pemInput.value)) {
             this.pemInput.value = this.pemSlider.value;
+          } else if (this.pemInput.value <= 0) {
+            this.pemInput.value = 1;
           }
         };
       }  

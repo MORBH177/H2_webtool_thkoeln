@@ -32,10 +32,11 @@ body{
     font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
     font-size: 20px;
     align-items: center;
+    align-content: center;
 }
 
 h1{
-    font-size: 32px;
+    font-size: 28px;
     line-height: 115%;
 }
 
@@ -62,11 +63,11 @@ p{
 
 @media(max-width: 760px){
     h1{
-        font-size: 6vw;
+        font-size: 4vw;
         text-align: center;
     }
     h2{
-        font-size: 5vw;
+        font-size: 4vw;
         text-align: left;
     }
     h3{
@@ -74,7 +75,7 @@ p{
         text-align: left;
     }
     p{
-        font-size: 4vw;
+        font-size: 3vw;
         text-align: left;
     }
 }

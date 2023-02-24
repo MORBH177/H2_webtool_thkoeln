@@ -2,13 +2,14 @@
     padding-top: 50px;
     padding-bottom: 25px;
     display: grid;
-    grid-template-columns: 0.75fr;
+    grid-template-columns: 0.8fr;
     grid-template-rows: 200px 350px 1000px;
     grid-auto-columns: 1fr;
-    max-width: 1250px;
+    max-width: 1050px;
     gap: 10px 10px;
     grid-auto-flow: row;
     justify-content: center;
+    align-content: center;
     align-items: stretch;
     grid-template-areas:
       "header"
@@ -18,6 +19,7 @@
   
 .header {  
     display: grid;
+    padding-bottom: 25px;
     grid-template-columns: 1.3fr 0.7fr;
     grid-template-rows: auto;
     gap: 0px 0px;
@@ -52,8 +54,8 @@
 
 .input-container {  
     display: grid;
-    grid-template-columns: 0.6fr 0.4fr 2.2fr 0.6fr;
-    grid-template-rows: 60px 60px 60px 60px 60px;
+    grid-template-columns: 0.6fr 0.4fr 2.2fr 0.8fr;
+    grid-template-rows: 50px 60px 60px 60px 60px;
     gap: 5px 0px;
     grid-auto-flow: row;
     grid-template-areas:
@@ -122,16 +124,16 @@
 .input-fields {
     font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
     font-size: 24px;
-    text-align: right;
+    text-align: center;
     width: 60px;
-    height: 30px;
-    border-color: var(--background_dark2);
+    height: 35px;
+    border-color: var(--background_dark3);
     box-shadow: none;
     text-shadow: none;
     border: none;
     box-sizing: border-box;
-    border-radius: var(--radius_small);
-    background-color: var(--background_dark2);
+    border-radius: var(--radius_medium);
+    background-color: var(--background_dark3);
     color: var(--text_color);
   }
 .eingabe-pv { 
@@ -194,7 +196,7 @@
     -webkit-appearance: none; /* ob wir den Slider mit webkit anpassen müssenwir noch rausfinden */
     appearance: none;
     width: 39vw;
-    max-width: 500px;
+    max-width: 440px;
     height: 8px;
     border-radius: 4px;
     border-color: transparent;
@@ -239,6 +241,7 @@ height: 12px;
     justify-content: left;
     align-content: center;
     grid-area: unit-pv; 
+    padding-left: 5px;
 }
 
 .unit-wind-on { 
@@ -246,20 +249,23 @@ height: 12px;
     justify-content: left;
     align-content: center;
     grid-area: unit-wind-on; 
+    padding-left: 5px;
 }
 
 .unit-wind-off { 
     display: grid;
     justify-content: left;
     align-content: center;
-    grid-area: unit-wind-off; 
+    grid-area: unit-wind-off;
+    padding-left: 5px; 
 }
 
 .unit-pem { 
     display: grid;
     justify-content: left;
     align-content: center;
-    grid-area: unit-pem; 
+    grid-area: unit-pem;
+    padding-left: 5px; 
 }
 
 .unit-text {
@@ -277,7 +283,7 @@ height: 12px;
     display: grid;
     padding-bottom: 15px;
     grid-template-columns: 1fr;
-    grid-template-rows: 60px 1fr 1fr;
+    grid-template-rows: 40px 400px 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-area: output-container;
@@ -286,7 +292,8 @@ height: 12px;
 }
 
 .ergebnisse-title {
-    padding-left: 25px; 
+    padding-left: 25px;
+    height: 40px;
     grid-area: 1 / 1 / 4 / 2; 
 }
 
@@ -303,7 +310,7 @@ height: 12px;
 }
 .output-text-fields {
     font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     align-content: center;
     text-align: center;
 }
@@ -312,7 +319,7 @@ height: 12px;
     display: flex;
     text-align: center;
     font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
-    font-size: 20px;
+    font-size: 22px;
     width: 140px;
     height: 35px;
     border-color: var(--background_dark3);
@@ -331,7 +338,7 @@ height: 12px;
     justify-content: center;
     align-content: center;
     justify-items: center;
-    gap: 15px;
+    gap: 10px;
     grid-area: out-val-pem-operation; 
 }
 
@@ -351,7 +358,7 @@ height: 12px;
     padding-right: 15px;
     justify-content: center;
     align-content: center;
-    gap: 15px;
+    gap: 10px;
     grid-area: out-val-pem-generation; 
 }
 
@@ -379,7 +386,7 @@ height: 12px;
     display: grid;
     text-align: center;
     font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
-    font-size: 20px;
+    font-size: 22px;
     width: 80%;
     height: 35px;
     border-color: var(--background_dark3);
@@ -407,9 +414,10 @@ height: 12px;
     display: grid;
     justify-content: center;
     align-content: center;
+    justify-items: right;
     grid-area: car-value; 
     padding-left: 15px;
-    padding-right: 5px;
+    padding-right: 15px;
 }
 
 .car-chart { 
@@ -434,9 +442,10 @@ height: 12px;
     display: grid;
     justify-content: center;
     align-content: center;
-    grid-area: bus-value;
+    justify-items: right;
+    grid-area: bus-value; 
     padding-left: 15px;
-    padding-right: 5px; 
+    padding-right: 15px; 
 }
 
 .bus-chart { 
@@ -458,9 +467,10 @@ height: 12px;
     display: grid;
     justify-content: center;
     align-content: center;
+    justify-items: right;
     grid-area: steel-value; 
     padding-left: 15px;
-    padding-right: 5px;
+    padding-right: 15px;
 }
 
 .steel-chart { 
@@ -482,9 +492,10 @@ height: 12px;
     display: grid;
     justify-content: center;
     align-content: center;
+    justify-items: right;
     grid-area: house-value; 
     padding-left: 15px;
-    padding-right: 5px;
+    padding-right: 15px;
 }
 
 .chart-house { 
@@ -497,9 +508,9 @@ height: 12px;
     justify-content: flex-start;
     align-items: center;
     background-color: var(--background_dark3);
-    border-radius: var(--radius_medium);
+    border-radius: var(--radius_large);
     gap: 0 20px;
-    height: 80px;
+    height: 77px;
     width: 90%;
 }
 
@@ -547,3 +558,93 @@ height: 12px;
     height: 32px;
 }
   
+@media (max-width: 760px){
+    .h2webtool-container {  
+        padding-top: 50px;
+        padding-bottom: 25px;
+        display: grid;
+        grid-template-columns: 0.8fr;
+        grid-template-rows: 300px 1fr 1000px;
+        grid-auto-columns: 1fr;
+        max-width: 1050px;
+        gap: 10px 10px;
+        grid-auto-flow: row;
+        justify-content: center;
+        align-content: center;
+        align-items: stretch;
+        grid-template-areas:
+          "header"
+          "input-container"
+          "output-container"; 
+    }
+
+    .header {  
+        display: grid;
+        padding-bottom: 25px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 120px 150px;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas:
+            "title-image"
+            "title-text";
+        grid-area: header;
+        background-color: var(--background_dark2);
+        border-radius: var(--radius_medium);
+    } 
+
+    .title-image { 
+        display: grid;
+        grid-area: title-image;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .title-logo {
+        padding-top: 5px;
+        width: 140px;
+        height: 80px;
+    }
+
+    .title-text {
+        padding-left: 25px; 
+        padding-right: 25px;
+        display: grid;
+        grid-area: title-text; 
+        align-items: center;
+        justify-items: center;
+    }
+
+    .input-container {  
+        display: grid;
+        padding-bottom: 25px;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 50px 50px 40px 50px 40px 50px 40px 50px 40px;
+        gap: 5px 0px;
+        grid-auto-flow: row;
+        grid-template-areas:
+            "eingabe-title eingabe-title eingabe-title"
+            "icon-pv eingabe-pv unit-pv"
+            "area-slider-pv area-slider-pv area-slider-pv"
+            "icon-wind-on eingabe-wind-onshore unit-wind-on"
+            "area-slider-wind-on area-slider-wind-on area-slider-wind-on"
+            "icon-wind-off eingabe-wind-offshore unit-wind-off"
+            "area-slider-wind-off area-slider-wind-off area-slider-wind-off"
+            "icon-pem eingabe-pem unit-pem"
+            "area-slider-pem area-slider-pem area-slider-pem";
+        grid-area: input-container;
+        background-color: var(--background_dark2);
+        border-radius: var(--radius_medium);
+    }
+
+    .slider {
+        -webkit-appearance: none; /* ob wir den Slider mit webkit anpassen müssenwir noch rausfinden */
+        appearance: none;
+        width: 70vw;
+        max-width: 440px;
+        height: 8px;
+        border-radius: 4px;
+        border-color: transparent;
+        background-color: #af368c;
+      }
+}
