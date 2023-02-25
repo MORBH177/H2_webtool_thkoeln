@@ -109,7 +109,7 @@ var chartConfig_house = {
       scales: {
           x: {
               display: false,
-              max: 100000,
+              max: 305000,
               stacked: true,
               ticks: {
                 beginAtZero: true,
@@ -223,7 +223,7 @@ class H2tool{
     //  constants for calculation
     hu_h2 = 33.33; // MWh/t H2
     ho_h2 = 39.41; // MWh/t H2
-    n_pem_heat = 0.2; // PEM-Wärmeausbeute
+    n_pem_heat = 0.75; // PEM-mit Wärmeausbeute gesamt
     rho_h2o = 997; // kg/m³
 
     constructor(basedata, etadata, chartConfig_car, chartConfig_bus, chartConfig_house, chartConfig_steel){
@@ -532,6 +532,7 @@ class H2tool{
       let p_combined = [];
       let pem_operation = [];
       let pem_production = [];
+      let pem_production_heat = [];
 
       for (let i = 0; i < this.basedata[0].length; i++) {
         // data_scaled = [pv, windC, windO]
@@ -558,6 +559,13 @@ class H2tool{
             break;
           }
         }
+        for (let j = 0; j < this.etadata[0].length; j++) {
+          if (this.etadata[0][j] >= pem_last) {
+            pem_production_heat.push((this.n_pem_heat - this.etadata[1][j]) * pem_operation[i]);
+            break;
+          }
+        }
+        
       }
       
       // calculate the used Energy amount
@@ -572,7 +580,7 @@ class H2tool{
       this.h2_hhv = parseInt(this.m_h2 * this.ho_h2); // MWh
 
       // calculate the stack heat
-      this.q_stack = parseInt(this.used_energy * this.n_pem_heat); // MWh
+      this.q_stack = parseInt(pem_production_heat.reduce((a, b) => a + b, 0)); // MWh
       
       // calculate water and oxygen amount
       this.v_h2o = parseInt(((this.m_h2 * 16) * 1000) / this.rho_h2o); // m³

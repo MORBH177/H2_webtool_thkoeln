@@ -17,7 +17,7 @@
     --black: #000000;
     --radius_small: 5px;
     --radius_medium: 10px;
-    --radius_large: 15px;
+    --radius_large: 25px;
 }
 
 *{
@@ -71,7 +71,7 @@ p{
         text-align: left;
     }
     h3{
-        font-size: 4vw;
+        font-size: 3vw;
         text-align: left;
     }
     p{

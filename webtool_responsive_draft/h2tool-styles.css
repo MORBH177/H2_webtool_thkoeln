@@ -1,11 +1,14 @@
 .h2webtool-container {  
     padding-top: 50px;
     padding-bottom: 25px;
+    padding-left: 2px;
+    padding-right: 2px;
     display: grid;
-    grid-template-columns: 0.8fr;
+    grid-template-columns: 0.7fr;
     grid-template-rows: 200px 350px 1000px;
     grid-auto-columns: 1fr;
-    max-width: 1050px;
+    width: 85vw;
+    max-width: 1250px;
     gap: 10px 10px;
     grid-auto-flow: row;
     justify-content: center;
@@ -54,7 +57,7 @@
 
 .input-container {  
     display: grid;
-    grid-template-columns: 0.6fr 0.4fr 2.2fr 0.8fr;
+    grid-template-columns: 0.7fr 0.6fr 2.2fr 0.7fr;
     grid-template-rows: 50px 60px 60px 60px 60px;
     gap: 5px 0px;
     grid-auto-flow: row;
@@ -81,9 +84,9 @@
     grid-area: icon-pv; 
 }
 .pv-icon {
-    padding-right: 6px;
-    width: 40px;
-    height: 40px;
+    padding-right: 7px;
+    width: 38px;
+    height: 38px;
 }
 
 .icon-wind-on { 
@@ -93,8 +96,8 @@
     grid-area: icon-wind-on; 
 }
 .wind-on-icon {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 45px;
 }
 
 
@@ -105,8 +108,8 @@
     grid-area: icon-wind-off; 
 }
 .wind-off-icon {
-    width: 48px;
-    height: 54px;
+    width: 54px;
+    height: 50px;
 }
 
 .icon-pem { 
@@ -116,16 +119,16 @@
     grid-area: icon-pem; 
 }
 .pem-icon {
-    padding-right: 3px;
-    width: 42px;
+    padding-right: 6px;
+    width: 40px;
     height: 44px;
 }
 
 .input-fields {
     font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
-    width: 60px;
+    width: 50px;
     height: 35px;
     border-color: var(--background_dark3);
     box-shadow: none;
@@ -138,28 +141,28 @@
   }
 .eingabe-pv { 
     display: grid;
-    justify-content: right;
+    justify-content: center;
     align-content: center;
     grid-area: eingabe-pv; 
 }
 
 .eingabe-wind-onshore { 
     display: grid;
-    justify-content: right;
+    justify-content: center;
     align-content: center;
     grid-area: eingabe-wind-onshore; 
 }
 
 .eingabe-wind-offshore { 
     display: grid;
-    justify-content: right;
+    justify-content: center;
     align-content: center;
     grid-area: eingabe-wind-offshore; 
 }
 
 .eingabe-pem { 
     display: grid;
-    justify-content: right;
+    justify-content: center;
     align-content: center;
     grid-area: eingabe-pem; 
 }
@@ -195,7 +198,7 @@
 .slider {
     -webkit-appearance: none; /* ob wir den Slider mit webkit anpassen müssenwir noch rausfinden */
     appearance: none;
-    width: 39vw;
+    width: 32vw;
     max-width: 440px;
     height: 8px;
     border-radius: 4px;
@@ -241,7 +244,7 @@ height: 12px;
     justify-content: left;
     align-content: center;
     grid-area: unit-pv; 
-    padding-left: 5px;
+    padding-left: 15px;
 }
 
 .unit-wind-on { 
@@ -249,7 +252,7 @@ height: 12px;
     justify-content: left;
     align-content: center;
     grid-area: unit-wind-on; 
-    padding-left: 5px;
+    padding-left: 15px;
 }
 
 .unit-wind-off { 
@@ -257,7 +260,7 @@ height: 12px;
     justify-content: left;
     align-content: center;
     grid-area: unit-wind-off;
-    padding-left: 5px; 
+    padding-left: 15px; 
 }
 
 .unit-pem { 
@@ -265,14 +268,14 @@ height: 12px;
     justify-content: left;
     align-content: center;
     grid-area: unit-pem;
-    padding-left: 5px; 
+    padding-left: 15px; 
 }
 
 .unit-text {
     font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     text-align: left;
-    padding-top: 2px;
+    padding-top: 5px;
     width: 60px;
     height: 30px;
     background-color: var(--background_dark2);
@@ -320,7 +323,7 @@ height: 12px;
     text-align: center;
     font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
     font-size: 22px;
-    width: 140px;
+    width: 120px;
     height: 35px;
     border-color: var(--background_dark3);
     border-radius: var(--radius_medium);
@@ -509,64 +512,65 @@ height: 12px;
     align-items: center;
     background-color: var(--background_dark3);
     border-radius: var(--radius_large);
-    gap: 0 20px;
+    gap: 0 0;
     height: 77px;
-    width: 90%;
+    width: 92%;
 }
 
 .carplot-div {
     height: 100px;
-    width: 85%;
+    width: 88%;
 }
 .car-icon {
-    padding-left: 1vw;
-    padding-right: 5%;
-    width: 33px;
-    height: 33px;
+    width: 26px;
+    height: 26px;
 }
 
 .busplot-div {
     height: 100px;
-    width: 85%;
+    width: 88%;
 }
 .bus-icon {
-    padding-left: 1vw;
-    padding-right: 5%;
-    width: 35px;
-    height: 35px;
+    width: 28px;
+    height: 28px;
 }
 
 .steelplot-div {
     height: 100px;
-    width: 85%;
+    width: 88%;
 }
 .steel-icon {
-    padding-left: 1vw;
-    padding-right: 5%;
-    width: 32px;
-    height: 32px;
+    width: 26px;
+    height: 26px;
 }
 
 .houseplot-div {
     height: 100px;
-    width: 85%;
+    width: 88%;
 }
 .house-icon {
-    padding-left: 1vw;
-    padding-right: 5%;
-    width: 32px;
-    height: 32px;
+    width: 27px;
+    height: 27px;
 }
-  
+
+@media (max-width: 980px){
+    .title-logo {
+        width: 140px;
+        height: 80px;
+    }
+}
+
 @media (max-width: 760px){
     .h2webtool-container {  
         padding-top: 50px;
         padding-bottom: 25px;
+        padding-left: 10px;
+        padding-right: 2px;
         display: grid;
-        grid-template-columns: 0.8fr;
-        grid-template-rows: 300px 1fr 1000px;
+        grid-template-columns: 100%;
+        grid-template-rows: 350px 1fr 1300px;
         grid-auto-columns: 1fr;
-        max-width: 1050px;
+        width: 95vw;
         gap: 10px 10px;
         grid-auto-flow: row;
         justify-content: center;
@@ -581,7 +585,7 @@ height: 12px;
     .header {  
         display: grid;
         padding-bottom: 25px;
-        grid-template-columns: 1fr;
+        grid-template-columns: auto;
         grid-template-rows: 120px 150px;
         gap: 0px 0px;
         grid-auto-flow: row;
@@ -602,8 +606,8 @@ height: 12px;
 
     .title-logo {
         padding-top: 5px;
-        width: 140px;
-        height: 80px;
+        width: 130px;
+        height: 75px;
     }
 
     .title-text {
@@ -619,8 +623,8 @@ height: 12px;
         display: grid;
         padding-bottom: 25px;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 50px 50px 40px 50px 40px 50px 40px 50px 40px;
-        gap: 5px 0px;
+        grid-template-rows: 50px 50px 30px 50px 30px 50px 30px 50px 30px;
+        gap: 2px 0px;
         grid-auto-flow: row;
         grid-template-areas:
             "eingabe-title eingabe-title eingabe-title"
@@ -637,14 +641,437 @@ height: 12px;
         border-radius: var(--radius_medium);
     }
 
+    .icon-pv { 
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-area: icon-pv; 
+    }
+    .pv-icon {
+        padding-left: 4vw;
+        padding-top: 15px;
+        width: 30px;
+        height: 30px;
+    }
+    
+    .icon-wind-on { 
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-area: icon-wind-on; 
+    }
+    .wind-on-icon {
+        padding-left: 3vw;
+        padding-top: 15px;
+        width: 40px;
+        height: 38px;
+    }
+
+    .icon-wind-off {
+        display: grid;
+        justify-content: center;
+        align-content: center; 
+        grid-area: icon-wind-off; 
+    }
+    .wind-off-icon {
+        padding-left: 3vw;
+        padding-top: 15px;
+        width: 42px;
+        height: 40px;
+    }
+    
+    .icon-pem { 
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-area: icon-pem; 
+    }
+    .pem-icon {
+        padding-left: 5vw;
+        padding-top: 15px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .eingabe-pv { 
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-area: eingabe-pv; 
+        padding-top: 15px;
+    }
+    
+    .eingabe-wind-onshore { 
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-area: eingabe-wind-onshore; 
+        padding-top: 15px;
+    }
+    
+    .eingabe-wind-offshore { 
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-area: eingabe-wind-offshore; 
+        padding-top: 15px;
+    }
+    
+    .eingabe-pem { 
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-area: eingabe-pem; 
+        padding-top: 15px;
+    }
+
+    
     .slider {
         -webkit-appearance: none; /* ob wir den Slider mit webkit anpassen müssenwir noch rausfinden */
         appearance: none;
-        width: 70vw;
-        max-width: 440px;
+        width: 60vw;
+        max-width: 380px;
         height: 8px;
         border-radius: 4px;
         border-color: transparent;
         background-color: #af368c;
       }
+
+      .unit-pv { 
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-area: unit-pv; 
+        padding-right: 5vw;
+    }
+    
+    .unit-wind-on { 
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-area: unit-wind-on; 
+        padding-right: 5vw;
+    }
+    
+    .unit-wind-off { 
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-area: unit-wind-off;
+        padding-right: 5vw;
+    }
+    
+    .unit-pem { 
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-area: unit-pem;
+        padding-right: 5vw; 
+    }
+    
+    .unit-text {
+        font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
+        font-size: 20px;
+        text-align: left;
+        padding-top: 20px;
+        width: 60px;
+        height: 30px;
+        background-color: var(--background_dark2);
+        color: var(--text_color);
+    }
+
+    .output-container {  
+        display: grid;
+        padding-bottom: 15px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 40px 640px 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-area: output-container;
+        background-color: var(--background_dark2);
+        border-radius: var(--radius_medium);
+    }
+    
+    .ergebnisse-title {
+        padding-left: 25px;
+        height: 40px;
+        grid-area: 1 / 1 / 4 / 2; 
+    }
+    
+    .output-values {  
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 250px 350px;
+        max-height: 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas:
+            "out-val-pem-image out-val-pem-image"
+            "out-val-pem-operation out-val-pem-generation";
+        grid-area: 2 / 1 / 3 / 2;
+    }
+    .output-text-fields {
+        font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
+        font-size: 16px;
+        align-content: center;
+        text-align: center;
+    }
+    
+    .outputfields {
+        display: flex;
+        text-align: center;
+        font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
+        font-size: 20px;
+        width: 100px;
+        height: 35px;
+        border-color: var(--background_dark3);
+        border-radius: var(--radius_medium);
+        box-shadow: none;
+        text-shadow: none;
+        border: none;
+        box-sizing: border-box;
+        background-color: var(--background_dark3);
+        color: var(--text_color);
+      }
+    
+    .out-val-pem-operation { 
+        display: grid;
+        padding-left: 5px;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        gap: 10px;
+        grid-area: out-val-pem-operation; 
+    }
+    
+    .out-val-pem-image { 
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-area: out-val-pem-image; 
+        padding-top: 15px;
+    }
+    .pem-graphic {
+        width: 90%;
+        height: 220px;
+        padding-bottom: 10px;
+    }
+    
+    .out-val-pem-generation { 
+        display: grid;
+        padding-right: 5px;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        gap: 10px;
+        grid-area: out-val-pem-generation; 
+    }
+    
+    .output-charts {  
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 50px 120px 120px 120px 120px;
+        gap: 2px 0px;
+        grid-auto-flow: row;
+        grid-template-areas:
+            "chart-title"
+            "area-chart-car"
+            "area-chart-bus"
+            "area-chart-steel"
+            "area-chart-house";
+        grid-area: 3 / 1 / 4 / 2;
+    }
+    
+    .chart-title { 
+        padding-left: 25px;
+        grid-area: chart-title; 
+    }
+    
+    .outputfields-versorgung {
+        display: grid;
+        text-align: center;
+        font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
+        font-size: 20px;
+        width: 50%;
+        height: 30px;
+        border-color: var(--background_dark3);
+        border-radius: var(--radius_medium);
+        box-shadow: none;
+        text-shadow: none;
+        border: none;
+        box-sizing: border-box;
+        background-color: var(--background_dark3);
+        color: var(--text_color);
+    }
+
+    .area-chart-car {  
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 35px 85px;
+        gap: 0px 0px;
+        grid-auto-flow: column;
+        grid-template-areas:
+            "car-value"
+            "car-chart";
+        grid-area: area-chart-car;
+    }
+    
+    .car-value { 
+        display: grid;
+        justify-content: left;
+        align-content: left;
+        justify-items: left;
+        grid-area: car-value; 
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .car-chart { 
+        padding-left: 15px; 
+        width: 100%;
+        grid-area: car-chart; 
+    }
+    
+    
+    
+    .area-chart-bus {  
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 35px 85px;
+        gap: 0px 0px;
+        grid-auto-flow: column;
+        grid-template-areas:
+            "bus-value"
+            "bus-chart";
+        grid-area: area-chart-bus;
+    }
+    
+    .bus-value { 
+        display: grid;
+        justify-content: left;
+        align-content: left;
+        justify-items: left;
+        grid-area: bus-value; 
+        padding-left: 15px;
+        padding-right: 15px; 
+    }
+    
+    .bus-chart { 
+        padding-left: 15px; 
+        width: 100%;
+        grid-area: bus-chart; 
+    }
+    
+    .area-chart-steel {  
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 35px 85px;
+        gap: 0px 0px;
+        grid-auto-flow: column;
+        grid-template-areas:
+            "steel-value"
+            "steel-chart";
+        grid-area: area-chart-steel;
+    }
+    
+    .steel-value { 
+        display: grid;
+        justify-content: left;
+        align-content: left;
+        justify-items: left;
+        grid-area: steel-value; 
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .steel-chart { 
+        padding-left: 15px; 
+        width: 100%;
+        grid-area: steel-chart; 
+    }
+    
+    .area-chart-house {  
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 35px 85px;
+        gap: 0px 0px;
+        grid-auto-flow: column;
+        grid-template-areas:
+            "house-value"
+            "chart-house";
+        grid-area: area-chart-house;
+    }
+    
+    .house-value { 
+        display: grid;
+        justify-content: left;
+        align-content: left;
+        justify-items: left;
+        grid-area: house-value; 
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .chart-house {
+        padding-left: 15px; 
+        width: 100%;
+        grid-area: chart-house; 
+    }
+
+    .rectangle-chart {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: var(--background_dark3);
+        border-radius: var(--radius_large);
+        gap: 0 0;
+        height: 77px;
+        width: 90%;
+    }
+
+    .carplot-div {
+        height: 100px;
+        width: 90%;
+    }
+    .car-icon {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .busplot-div {
+        height: 100px;
+        width: 90%;
+    }
+    .bus-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .steelplot-div {
+        height: 100px;
+        width: 90%;
+    }
+    .steel-icon {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .houseplot-div {
+        height: 100px;
+        width: 90%;
+    }
+    .house-icon {
+        width: 23px;
+        height: 23px;
+    }
+}
+
+@media (max-width: 430px){
+    .output-text-fields {
+        font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
+        font-size: 14px;
+        align-content: center;
+        text-align: center;
+    }
 }
