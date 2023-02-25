@@ -565,7 +565,7 @@ height: 12px;
         padding-top: 50px;
         padding-bottom: 25px;
         padding-left: 10px;
-        padding-right: 2px;
+        padding-right: 10px;
         display: grid;
         grid-template-columns: 100%;
         grid-template-rows: 350px 1fr 1300px;
