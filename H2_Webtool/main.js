@@ -1,6 +1,6 @@
 
-const filePath_gen = "gen_data.json";
-const filePath_eta = "eta_data.json";
+const filePath_gen = "H2_Webtool/gen_data.json";
+const filePath_eta = "H2_Webtool/eta_data.json";
 
 // setup plots
 var chartConfig_car = {
