@@ -197,13 +197,11 @@
 
 input[type=range].styled-slider {
     -webkit-appearance: none;
-    appearance: none;
     width: 32vw;
     max-width: 440px;
     height: 8px;
     border-radius: 4px;
     border-color: transparent;
-    
   }
   
 /*progress support*/
@@ -275,7 +273,7 @@ box-shadow: 0 0 2px #000000;
 
 input[type=range].styled-slider::-moz-range-track {
 height: max(calc(1em - 1px - 1px),0px);
-border: 1px solid #b2b2b2;
+border: none;
 border-radius: 0.5em;
 background: #ffffff;
 box-shadow: none;
@@ -861,15 +859,11 @@ border-color: #c1c1c1;
     }
 
     
-    .slider {
-        -webkit-appearance: none; /* ob wir den Slider mit webkit anpassen müssenwir noch rausfinden */
+    input[type=range].styled-slider {
+        -webkit-appearance: none;
         appearance: none;
-        width: 60vw;
+        width: 70vw;
         max-width: 380px;
-        height: 8px;
-        border-radius: 4px;
-        border-color: transparent;
-        background-color: #af368c;
       }
 
       .unit-pv { 
@@ -908,7 +902,7 @@ border-color: #c1c1c1;
         font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
         font-size: 20px;
         text-align: left;
-        padding-top: 40px;
+        padding-top: 25px;
         width: 60px;
         height: 30px;
         background-color: var(--background_dark2);
