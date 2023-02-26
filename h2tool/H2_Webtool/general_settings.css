@@ -83,4 +83,19 @@ p{
         font-size: 3vw;
         text-align: left;
     }
+
+    body, html{
+        width: 768px;
+        margin: 0 auto;
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 425px){
+
+    body, html{
+        width: 425px;
+        margin: 0 auto;
+        overflow-x: hidden;
+    }
 }

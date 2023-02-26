@@ -568,7 +568,7 @@ height: 12px;
         padding-right: 10px;
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: 350px 1fr 1300px;
+        grid-template-rows: 350px 1fr 1200px;
         grid-auto-columns: 1fr;
         width: 95vw;
         gap: 10px 10px;
@@ -784,7 +784,7 @@ height: 12px;
         display: grid;
         padding-bottom: 15px;
         grid-template-columns: 1fr;
-        grid-template-rows: 40px 640px 1fr;
+        grid-template-rows: 40px 540px 1fr;
         gap: 0px 0px;
         grid-auto-flow: row;
         grid-area: output-container;
@@ -801,7 +801,7 @@ height: 12px;
     .output-values {  
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 250px 350px;
+        grid-template-rows: 180px 350px;
         max-height: 1fr;
         gap: 0px 0px;
         grid-auto-flow: row;
@@ -853,7 +853,7 @@ height: 12px;
     }
     .pem-graphic {
         width: 90%;
-        height: 220px;
+        height: 150px;
         padding-bottom: 10px;
     }
     
