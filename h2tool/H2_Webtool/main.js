@@ -81,6 +81,13 @@ var chartConfig_house = {
   type: 'bar',
   data: {labels: ['Wärmeversorgung von x Wohngebäuden (kfW 40) mit 120 m²'],
       datasets: [{
+      label: 'Heizen mit H2',
+      data: [6327],
+      backgroundColor: ['rgba(140, 140, 140, 1.0)'],
+      borderRadius: 25,
+      borderWidth: 5,
+      inflateAmount: 5,
+      },{
       label: 'Versorgung mit Abwärme',
       data: [21166],
       backgroundColor: ['rgba(255, 255, 255, 1.0)'],
@@ -88,14 +95,7 @@ var chartConfig_house = {
       borderWidth: 5,
       inflateAmount: 5,      
       },
-      {
-      label: 'Heizen mit H2',
-      data: [6327],
-      backgroundColor: ['rgba(140, 140, 140, 1.0)'],
-      borderRadius: 25,
-      borderWidth: 5,
-      inflateAmount: 5,
-      },]
+      ]
   },
   options: {
       responsive: true,
@@ -517,13 +517,22 @@ class H2tool{
     updateMax() {
       const maxUse = 0.9;
       var max = parseInt(this.pv) + parseInt(this.windC) + parseInt(this.windO);
+
       if (max < 1) {
-        max = 1 / maxUse;
+        this.pemSlider.value = 1;
+        this.pemInput.value = 1;
+      } else if (max == 1) {
         this.pemSlider.value = 1;
         this.pemInput.value = 1;
       } else {
-        this.pemSlider.max = parseInt(max * maxUse);
-        this.pemInput.max = parseInt(max * maxUse);
+        if (this.pemSlider.value <= max) {
+          this.pemSlider.max = Math.ceil(max * maxUse);
+          this.pemInput.value = this.pemSlider.value;
+        } else {
+        this.pemSlider.max = Math.ceil(max * maxUse);
+        this.pemSlider.value = Math.ceil(max * maxUse);
+        this.pemInput.value = this.pemSlider.value;
+        }
       }
 
       for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
@@ -580,6 +589,9 @@ class H2tool{
 
       // calculate Volllaststunden
       this.vlh = parseInt(this.used_energy / this.pem); // h
+      if (isNaN(this.vlh)) {
+        this.vlh = 0;
+      }
       
       // calculate the produced H2 amount
       this.h2_lhv = parseInt(pem_production.reduce((a, b) => a + b, 0)); // MWh
@@ -628,8 +640,8 @@ class H2tool{
       //console.log(m_fe, amt_cars, amt_busses, amt_wasteheat, amt_h2heat);
       this.resultPlot_car.data.datasets[0].data[0] = amt_cars;
       this.resultPlot_bus.data.datasets[0].data[0] = amt_busses;
-      this.resultPlot_house.data.datasets[0].data[0] = amt_wasteheat;
-      this.resultPlot_house.data.datasets[1].data[0] = amt_h2heat;
+      this.resultPlot_house.data.datasets[1].data[0] = amt_wasteheat;
+      this.resultPlot_house.data.datasets[0].data[0] = amt_h2heat;
       this.resultPlot_steel.data.datasets[0].data[0] = m_fe;
 
       this.resultPlot_car.update();
