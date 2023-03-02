@@ -1,13 +1,14 @@
 
 const filePath_gen = "H2_Webtool/gen_data.json";
+const filePath_eta = "H2_Webtool/eta_data.json";
 
 // setup plots
 var chartConfig_car = {
   type: 'bar',
   data: {
-      labels: ['Betrieb von x Brennstoffzellen-Autos für 1 Jahr'],
+      labels: ['Betrieb von x Brennstoffzellen-Autos für 100 km'],
       datasets: [{
-      data: [20857],
+      data: [240833],
       backgroundColor: ['rgba(207, 24, 32, 1.0)'],
       borderRadius: 25,
       borderWidth: 5,
@@ -21,17 +22,12 @@ var chartConfig_car = {
       plugins: {
           legend: {
               display: false,
-              },
-              tooltip: {
-                  backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                  titleColor: 'rgba(0, 0, 0, 0.9)',
-                  bodyColor: 'rgba(0, 0, 0, 0.9)',
               }
       },
       scales: {
           x: {
               display: false,
-              max: 80000,
+              max: 821000,
               ticks: {
                 beginAtZero: true,
                 tickWidth: 1,
@@ -47,9 +43,9 @@ var chartConfig_car = {
 var chartConfig_bus = {
   type: 'bar',
   data: {
-      labels: ['Betrieb von x Brennstoffzellen-Bussen für 1 Jahr'],
+      labels: ['Betrieb von x Brennstoffzellen-Bussen für 100 km'],
       datasets: [{
-      data: [1270],
+      data: [48116],
       backgroundColor: ['rgba(236, 101, 37, 1.0)'],
       borderRadius: 25,
       borderWidth: 5,
@@ -63,17 +59,12 @@ var chartConfig_bus = {
       plugins: {
           legend: {
               display: false
-          },
-          tooltip: {
-              backgroundColor: 'rgba(255, 255, 255, 0.8)',
-              titleColor: 'rgba(0, 0, 0, 0.9)',
-              bodyColor: 'rgba(0, 0, 0, 0.9)',
           }
       },
       scales: {
           x: {
               display: false,
-              max: 4900,
+              max: 400000,
               ticks: {
                 beginAtZero: true,
                 tickWidth: 1,
@@ -88,21 +79,21 @@ var chartConfig_bus = {
 
 var chartConfig_house = {
   type: 'bar',
-  data: {labels: ['Wärmeversorgung von x Wohngebäuden (kfW 40) mit 140 m²'],
+  data: {labels: ['Wärmeversorgung von x Wohngebäuden (kfW 40) mit 120 m²'],
       datasets: [{
-      label: 'Versorgung mit Abwärme',
-      data: [18142],
-      backgroundColor: ['rgba(255, 255, 255, 1.0)'],
-      borderRadius: 25,
-      borderWidth: 5,
-      inflateAmount: 5,      
-      },{
       label: 'Heizen mit H2',
-      data: [64350],
+      data: [6327],
       backgroundColor: ['rgba(140, 140, 140, 1.0)'],
       borderRadius: 25,
       borderWidth: 5,
       inflateAmount: 5,
+      },{
+      label: 'Versorgung mit Abwärme',
+      data: [21166],
+      backgroundColor: ['rgba(255, 255, 255, 1.0)'],
+      borderRadius: 25,
+      borderWidth: 5,
+      inflateAmount: 5,      
       },
       ]
   },
@@ -113,17 +104,12 @@ var chartConfig_house = {
       plugins: {
           legend: {
               display: false
-          },
-          tooltip: {
-              backgroundColor: 'rgba(255, 255, 255, 0.8)',
-              titleColor: 'rgba(0, 0, 0, 0.9)',
-              bodyColor: 'rgba(0, 0, 0, 0.9)',
           }
       },
       scales: {
           x: {
               display: false,
-              max: 322000,
+              max: 305000,
               stacked: true,
               ticks: {
                 beginAtZero: true,
@@ -143,7 +129,7 @@ var chartConfig_steel = {
   data: {
       labels: ['Herstellung von x Tonnen Stahl'],
       datasets: [{
-      data: [51435],
+      data: [8092],
       backgroundColor: ['rgba(175, 54, 140, 1.0)'],
       borderRadius: 25,
       borderWidth: 5,
@@ -157,17 +143,12 @@ var chartConfig_steel = {
       plugins: {
           legend: {
               display: false
-          },
-          tooltip: {
-              backgroundColor: 'rgba(255, 255, 255, 0.8)',
-              titleColor: 'rgba(0, 0, 0, 0.9)',
-              bodyColor: 'rgba(0, 0, 0, 0.9)',
           }
       },
       scales: {
           x: {
               display: false,
-              max: 200000,
+              max: 30000,
               ticks: {
                 beginAtZero: true,
                 tickWidth: 1,
@@ -214,10 +195,10 @@ class H2tool{
     OutSteel = null;
 
     //  default values
-    outCar = 20857;
-    outBus = 1270;
-    outHouse = 82492;
-    outSteel = 51435;
+    outCar = 240833;
+    outBus = 48116;
+    outHouse = 21166;
+    outSteel = 8092;
 
     //  default values
     pv = 30;
@@ -561,12 +542,6 @@ class H2tool{
                 e.style.setProperty('--max', e.max == '' ? e.max : e.max);
                 e.addEventListener('input', () => e.style.setProperty('--value', e.value));
       }
-      for (let e of document.querySelectorAll('input[type="range"].slider-progressPEM')) {
-        e.style.setProperty('--value', e.value);
-        e.style.setProperty('--min', e.min == '' ? '0' : e.min);
-        e.style.setProperty('--max', e.max == '' ? e.max : e.max);
-        e.addEventListener('input', () => e.style.setProperty('--value', e.value))
-      }
     } //end updateMax
 
     // function that formats a number with thousand separators
@@ -638,17 +613,15 @@ class H2tool{
     updateChart() {
       // factors for graphic 
       let consumption_car = 1.2;  // kg H2 / 100km
-      let car_per_year = 13700; // km pro Jahr
       let consumption_bus = 6; // kg H2 / 100 km  
-      let bus_per_year = 45000; // km pro Jahr
-      let consumption_house = 15 * 140; // kWh pro haus (KfW40 Haus 15kWh/m² Annahme: 120m²)
+      let consumption_house = 15 * 120; // kWh pro haus (KfW40 Haus 15kWh/m² Annahme: 120m²)
 
       // mass steel
-      let m_fe = parseInt(parseFloat(this.m_h2) * 15); // t
+      let m_fe = parseInt(parseFloat(this.m_h2) * 28); // t
       // cars
-      let amt_cars = parseInt(((parseFloat(this.m_h2) * 1000) / ((consumption_car / 100) * car_per_year)));
+      let amt_cars = parseInt(((parseFloat(this.m_h2) * 1000) / consumption_car));
       // busses
-      let amt_busses = parseInt(((parseFloat(this.m_h2) * 1000) / ((consumption_bus / 100) * bus_per_year)));
+      let amt_busses = parseInt(((parseFloat(this.m_h2) * 1000) / consumption_bus));
       // amount house heating by wasteheat
       let amt_wasteheat = parseInt((parseFloat(this.q_stack) * 1000) / consumption_house); 
       // amount house heating by heat from H2
@@ -657,8 +630,8 @@ class H2tool{
       //console.log(m_fe, amt_cars, amt_busses, amt_wasteheat, amt_h2heat);
       this.resultPlot_car.data.datasets[0].data[0] = amt_cars;
       this.resultPlot_bus.data.datasets[0].data[0] = amt_busses;
-      this.resultPlot_house.data.datasets[0].data[0] = amt_wasteheat;
-      this.resultPlot_house.data.datasets[1].data[0] = amt_h2heat;
+      this.resultPlot_house.data.datasets[1].data[0] = amt_wasteheat;
+      this.resultPlot_house.data.datasets[0].data[0] = amt_h2heat;
       this.resultPlot_steel.data.datasets[0].data[0] = m_fe;
 
       this.resultPlot_car.update();

@@ -36,7 +36,7 @@ body{
 }
 
 body, html {
-    max-width: 1250px;
+    width: 1250px;
     margin: 0 auto;
 }
 
@@ -47,7 +47,7 @@ h1{
 
 h2{
     padding-top: 10px;
-    font-size: 22px;
+    font-size: 24px;
     line-height: 115%;
 }
 
@@ -57,11 +57,45 @@ h3{
 }
 
 p{
-    font-size: 18px;
+    font-size: 16px;
     line-height: 115%;
 }
 
 .subheading{
     margin-top: 25px;
     color: var(--text-color);
+}
+
+@media(max-width: 770px){
+    h1{
+        font-size: 4vw;
+        text-align: center;
+    }
+    h2{
+        font-size: 4vw;
+        text-align: left;
+    }
+    h3{
+        font-size: 3vw;
+        text-align: left;
+    }
+    p{
+        font-size: 3vw;
+        text-align: left;
+    }
+
+    body, html{
+        width: 768px;
+        margin: 0 auto;
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 425px){
+
+    body, html{
+        width: 425px;
+        margin: 0 auto;
+        overflow-x: hidden;
+    }
 }

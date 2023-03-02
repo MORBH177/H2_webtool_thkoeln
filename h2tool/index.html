@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="icon" href="H2_Webtool/public/electrolysis.svg">
-    <title>Elektrolyse-Rechner der TH Köln</title>
+    <title>Elektrolyse-Rechner der TH-Köln</title>
     <link rel="stylesheet" href="H2_Webtool/general_settings.css">
     <link rel="stylesheet" href="H2_Webtool/h2tool-styles.css">
 </head>
@@ -15,11 +15,11 @@
     <div class="h2webtool-container">
         <div class="header">
             <div class="title-text">
-                <h1>Elektrolyse-Rechner der TH-Köln</h1>
-                <p>Der Elektrolyse-Rechner der TH Köln berechnet die Herstellung von Wasserstoff aus erneuerbaren Energien.</p>
+                <h1>Elektrolyse-Rechner</h1>
+                <p>Legen Sie mit dem Elektrolyse-Rechner ihre Wasserstofferzeugung aus und lassen sich Auslegungsparameter berechnen. Erfahren Sie mehr über mögliche Versorgungskapazitäten Ihres grün erzeugten Wasserstoffs.</p>
             </div>
             <div class="title-image">
-                <img src="H2_Webtool/public/TH_Koeln_Logo.svg.png" alt="Logo der TH Köln" class="title-logo">
+                <img src="H2_Webtool/public/header_picture.png" alt="Logo Elektrolyse-Rechner" class="title-logo">
             </div>
         </div>
         <div class="input-container">
@@ -51,106 +51,136 @@
                 <input type="text" class="input-fields" value="30" id="output_eingabe_Elektrolyse">
             </div>
             <div class="area-slider-pv">
-                <input class="styled-slider slider-progress" type="range" id="PV-Eingabe" name="PV-Slider" step="1" min="0" max="100" value="30">
+                <input class="styled-slider slider-progress" data-tooltip="Hier können Sie die Leistung der PV-Anlagen angeben." type="range" id="PV-Eingabe" name="PV-Slider" step="1" min="0" max="100" value="30">
             </div>
             <div class="area-slider-wind-on">
-                <input class="styled-slider slider-progress" type="range" id="WKA_OnShore-Eingabe" name="WKA_OnShore" step="1" min="0" max="100" value="30">
+                <input class="styled-slider slider-progress" data-tooltip="Hier können Sie die Leistung der Windkraftanlagen Onshore angeben." type="range" id="WKA_OnShore-Eingabe" name="WKA_OnShore" step="1" min="0" max="100" value="30">
             </div>
             <div class="area-slider-wind-off">
-                <input class="styled-slider slider-progress" type="range" id="WKA_OffShore-Eingabe" name="WKA_OffShore" step="1" min="0" max="100" value="30">
+                <input class="styled-slider slider-progress" data-tooltip="Hier können Sie die Leistung der Windkraftanlagen Offshore angeben." type="range" id="WKA_OffShore-Eingabe" name="WKA_OffShore" step="1" min="0" max="100" value="30">
             </div>
             <div class="area-slider-pem">
-                <input class="styled-slider slider-progress" type="range" id="Elektrolyseur-Eingabe" name="Elektrolyseur" step="1" min="0" max="100" value="30">
+                <input class="styled-sliderPEM slider-progressPEM" data-tooltip="Hier können Sie die Leistung des PEM-Elektrolyseurs angeben." type="range" id="Elektrolyseur-Eingabe" name="Elektrolyseur" step="1" min="0" max="100" value="30">
             </div>
-            <div class="unit-pv"><span class="unit-text">MWp</span></div>
+            <div class="unit-pv"><span class="unit-text">MW<sub>p</sub></span></div>
             <div class="unit-wind-on"><span class="unit-text">MW</span></div>
             <div class="unit-wind-off"><span class="unit-text">MW</span></div>
             <div class="unit-pem"><span class="unit-text">MW</span></div>
         </div>
-        <div class="output-container">
+        <div class="output-values">
             <div class="ergebnisse-title">
-                <h2>Ergebnisse</h2>
+                <h2 style="text-align: center;">Auslegung / Erzeugung</h2>
             </div>
-            <div class="output-values">
-                <div class="out-val-pem-operation">
+            <div class="betrieb-pem">
+                <div class="betrieb-title">
+                    <div class="output-subtitles"><h3>Betrieb Elektrolyseur</h3></div>
+                </div>
+                <div class="betrieb-vlh">
                     <span class="output-text-fields">Volllaststunden [h]</span>
                     <input type="text" class="outputfields" id="output_volllaststunden" disabled>
-                    <span class="output-text-fields">genutzte<br>Strommenge<br>[MWh_el]</span>
+                </div>
+                <div class="betrieb-energy">
+                    <span class="output-text-fields">genutzte Strommenge [MWh<sub>el</sub>]</span>
                     <input type="text" class="outputfields" id="output_genutzte_Energie" disabled>
+                </div>
+                <div class="betrieb-water">
                     <span class="output-text-fields">Wasser [m³]</span>
                     <input type="text" class="outputfields" id="output_Wasser" disabled>
                 </div>
-                <div class="out-val-pem-image">
-                    <img src="H2_Webtool/public/electrolysis.svg" alt="graphic-pem" class="pem-graphic">
+            </div>
+            <div class="erzeugung-gase">
+                <div class="gase-title">
+                    <div class="output-subtitles"><h3>Erzeugte Gasmengen</h3></div>
                 </div>
-                <div class="out-val-pem-generation">
+                <div class="erz-hydrogen">
                     <span class="output-text-fields">Wasserstoff [t]</span>
                     <input type="text" class="outputfields" id="output_Wasserstoff" disabled>
-                    <span class="output-text-fields">H2 Energieinhalt<br>[MWh]</span>
-                    <input type="text" class="outputfields" id="output_Wasserstoff_energy" disabled>
+                </div>
+                <div class="erz-oxygen">
                     <span class="output-text-fields">Sauerstoff [t]</span>
                     <input type="text" class="outputfields" id="output_Sauerstoff" disabled>
-                    <span class="output-text-fields">Abwärme<br>[MWh_therm]</span>
+                </div>
+            </div>
+            <div class="erzeugung-energie">
+                <div class="energy-title">
+                    <div class="output-subtitles"><h3>Nutzenergie</h3></div>
+                </div>
+                <div class="energy-hydrogen">
+                    <span class="output-text-fields">H<sub>2</sub> Energieinhalt [MWh]</span>
+                    <input type="text" class="outputfields" id="output_Wasserstoff_energy" disabled>
+                </div>
+                <div class="energy-wasteheat">
+                    <span class="output-text-fields">Abwärme [MWh<sub>therm</sub>]</span>
                     <input type="text" class="outputfields" id="output_Abwärme" disabled>
                 </div>
             </div>
-            <div class="output-charts">
-                <div class="chart-title">
-                    <h2>Mögliche Versorgung</h2>
+        </div>
+        <div class="output-charts">
+            <div class="chart-title">
+                <h2>Mögliche Versorgung</h2>
+            </div>
+            <div class="area-chart-car">
+                <div class="car-value">
+                    <input type="text" class="outputfields-versorgung" id="output-car" disabled>
                 </div>
-                <div class="area-chart-car">
-                    <div class="car-value">
-                        <input type="text" class="outputfields-versorgung" id="output-car" disabled>
-                    </div>
-                    <div class="car-chart">
-                        <div class="rectangle-chart">
+                <div class="car-chart">
+                    <div class="rectangle-chart">
                             <div class="carplot-div"> 
                                 <canvas id="plot-car"></canvas>
                             </div>
                             <img src="H2_Webtool/public/car_icon.svg" alt="car" class="car-icon">
-                        </div>
-                    </div>
-                </div>
-                <div class="area-chart-bus">
-                    <div class="bus-value">
-                        <input type="text" class="outputfields-versorgung" id="output-bus" disabled>
-                    </div>
-                    <div class="bus-chart">
-                        <div class="rectangle-chart">
-                            <div class="busplot-div">
-                                <canvas id="plot-bus"></canvas>
-                            </div>
-                            <img src="H2_Webtool/public/bus_icon.svg" alt="bus" class="bus-icon">
-                        </div>
-                    </div>
-                </div>
-                <div class="area-chart-steel">
-                    <div class="steel-value">
-                        <input type="text" class="outputfields-versorgung" id="output-steel" disabled>
-                    </div>
-                    <div class="steel-chart">
-                        <div class="rectangle-chart">
-                            <div class="steelplot-div">
-                                <canvas id="plot-steel"></canvas>
-                            </div>
-                            <img src="H2_Webtool/public/steelbeam.svg" alt="steel" class="steel-icon">
-                        </div>
-                    </div>
-                </div>
-                <div class="area-chart-house">
-                    <div class="house-value">
-                        <input type="text" class="outputfields-versorgung" id="output-house" disabled>
-                    </div>
-                    <div class="chart-house">
-                        <div class="rectangle-chart">
-                            <div class="houseplot-div">
-                                <canvas id="plot-house"></canvas>
-                            </div>
-                            <img src="H2_Webtool/public/house_icon.svg" alt="house" class="house-icon">
-                        </div>
                     </div>
                 </div>
             </div>
+            <div class="area-chart-bus">
+                <div class="bus-value">
+                        <input type="text" class="outputfields-versorgung" id="output-bus" disabled>
+                </div>
+                <div class="bus-chart">
+                    <div class="rectangle-chart">
+                        <div class="busplot-div">
+                            <canvas id="plot-bus"></canvas>
+                        </div>
+                        <img src="H2_Webtool/public/bus_icon.svg" alt="bus" class="bus-icon">
+                    </div>
+                </div>
+            </div>
+            <div class="area-chart-steel">
+                <div class="steel-value">
+                    <input type="text" class="outputfields-versorgung" id="output-steel" disabled>
+                </div>
+                <div class="steel-chart">
+                    <div class="rectangle-chart">
+                        <div class="steelplot-div">
+                            <canvas id="plot-steel"></canvas>
+                        </div>
+                        <img src="H2_Webtool/public/steelbeam.svg" alt="steel" class="steel-icon">
+                    </div>
+                </div>
+            </div>
+            <div class="area-chart-house">
+                <div class="house-value">
+                    <input type="text" class="outputfields-versorgung" id="output-house" disabled>
+                </div>
+                <div class="chart-house">
+                    <div class="rectangle-chart">
+                        <div class="houseplot-div">
+                            <canvas id="plot-house"></canvas>
+                        </div>
+                        <img src="H2_Webtool/public/house_icon.svg" alt="house" class="house-icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="area-info">
+            <h2>Informationen <br></h2><br>
+            <p>
+            Wie viele Brennstoffzellen-Fahrzeuge (KFZ und Busse) können mit Ihrem erzeugten Wasserstoff ein Jahr lang betrieben werden?
+            Wie viel Stahl könnte mit dem erzeugten Wasserstoff hergestellt werden oder wie viele Häuser könnten mit dem 
+            erzeugten Wasserstoff oder der Abwärme aus der Elektrolyse versorgt werden? Hier können Sie herausfinden, welche Generatorleistung aus Photovoltaik
+            oder Windkraftleistung (On- und Offshore) mit welcher Elektrolyseleistung erreicht wird, um die oben genannten Versorgung zu gewährleisten.
+            </p> <br>
+            <p> Weitere Informationen über die im Elektrolyse-Rechner verwendete Berechnungsgrundlage erhalten Sie <a href="https://elektrolyserechner.web.th-koeln.de/H2_Webtool/Informationen.pdf" style="color: var(--th_purple);" target="_blank">Hier</a> .</p>
         </div>
     </div>
     <footer>
