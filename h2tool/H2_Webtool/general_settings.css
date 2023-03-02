@@ -54,6 +54,7 @@ h2{
 h3{
     font-size: 18px;
     line-height: 115%;
+    color: var(--th_orange);
 }
 
 p{
