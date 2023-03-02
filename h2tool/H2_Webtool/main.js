@@ -567,6 +567,12 @@ class H2tool{
         e.style.setProperty('--max', e.max == '' ? e.max : e.max);
         e.addEventListener('input', () => e.style.setProperty('--value', e.value))
       }
+
+      //update all variables
+      this.pem = this.pemSlider.value;
+      this.pv = this.pvSlider.value;
+      this.windC = this.windCSlider.value;
+      this.windO = this.windOSlider.value;
     } //end updateMax
 
     // function that formats a number with thousand separators
@@ -620,9 +626,8 @@ class H2tool{
       this.v_h2o = parseInt(((this.m_h2 * 16) * 1000) / this.rho_h2o); // m³
       this.m_o2 = parseInt(this.m_h2 * 8); // t
 
-      this.updateDOM();
       this.updateChart();
-
+      this.updateDOM();
     } //end calculateResults
 
     updateDOM() {
