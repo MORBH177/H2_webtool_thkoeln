@@ -41,18 +41,18 @@ body, html {
 }
 
 h1{
-    font-size: 28px;
+    font-size: 32px;
     line-height: 115%;
 }
 
 h2{
     padding-top: 10px;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 115%;
 }
 
 h3{
-    font-size: 20px;
+    font-size: 18px;
     line-height: 115%;
 }
 
@@ -61,7 +61,17 @@ p{
     line-height: 115%;
 }
 
-.subheading{
-    margin-top: 25px;
-    color: var(--text-color);
+@media (max-width:810px) {
+    h1{
+        font-size: 28px;
+    }
+    h2{
+        font-size: 16px;
+    }
+    h3{
+        font-size: 14px;
+    }
+    p{
+        font-size: 12px;
+    }
 }

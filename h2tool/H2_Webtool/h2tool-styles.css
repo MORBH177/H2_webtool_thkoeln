@@ -926,3 +926,156 @@ input[type=range].styled-sliderPEM.slider-progressPEM:active::-ms-fill-lower {
     background-color: var(--background_dark2);
     border-radius: var(--radius_large); 
 }
+
+@media (max-width:810px) {
+    
+    /*header content*/
+    .title-text {
+        padding-top: 25px;
+        padding-left: 25px; 
+        display: grid;
+        grid-area: title-text; 
+        align-items: center;
+        justify-items: center;
+    } 
+    .title-image { 
+        display: grid;
+        grid-area: title-image;
+        align-content: center;
+        justify-content: center;
+    }
+    .title-logo {
+        width: 200px;
+        height: 120px;
+    }
+
+    /*input area*/
+    .input-fields {
+        font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
+        font-size: 20px;
+        text-align: center;
+        width: 50px;
+        height: 32px;
+        border-color: var(--background_dark3);
+        box-shadow: none;
+        text-shadow: none;
+        border: none;
+        box-sizing: border-box;
+        border-radius: var(--radius_medium);
+        background-color: var(--background_dark3);
+        color: var(--text_color);
+    }
+    .unit-text {
+        font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
+        font-size: 18px;
+        text-align: left;
+        padding-top: 7px;
+        width: 60px;
+        height: 30px;
+        background-color: var(--background_dark2);
+        color: var(--text_color);
+    }
+
+    /*output area*/
+    /*styling der output felder*/
+    .output-text-fields {
+        font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
+        width: fit-content;
+        text-align: center;
+        font-size: 14px;
+    }
+    .outputfields {
+        text-align: center;
+        font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
+        font-size: 20px;
+        max-width: 120px;
+        height: 32px;
+        border-color: var(--background_dark3);
+        border-radius: var(--radius_medium);
+        box-shadow: none;
+        text-shadow: none;
+        border: none;
+        box-sizing: border-box;
+        background-color: var(--background_dark3);
+        color: var(--text_color);
+    }
+
+    /*chart area*/
+    .outputfields-versorgung {
+        text-align: center;
+        font-family: "myriad-pro-semi-condensed","Adobe Blank",Arial,Helvetica,sans-serif;
+        font-size: 20px;
+        width: 90%;
+        height: 35px;
+        border-radius: var(--radius_medium);
+        box-shadow: none;
+        text-shadow: none;
+        border: none;
+        box-sizing: border-box;
+        background-color: var(--background_dark3);
+        color: var(--text_color);
+    }
+
+    .area-info { 
+        padding: 15px;
+    }
+
+
+}
+
+@media (max-width: 660px) {
+    /*umsortieren für mobile*/
+    .h2webtool-container {  
+        display: grid;
+        padding: 25px 5px 25px 5px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 300px 360px 420px 1fr 250px;
+        grid-auto-columns: 1fr;
+        gap: 5px 5px;
+        grid-auto-flow: row;
+        justify-content: center;
+        align-items: stretch;
+        grid-template-areas:
+            "header"
+            "input-container"
+            "output-charts"
+            "output-values"
+            "area-info";
+    }
+
+    /*layout des headers*/
+    .header {  
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 170px 130px;
+        gap: 0px 0px;
+        grid-auto-flow: column;
+        grid-template-areas:
+            "title-image"
+            "title-text";
+        grid-area: header;
+        background-color: var(--background_dark2);
+        border-radius: var(--radius_large);
+    } 
+    /*header content*/
+    .title-text {
+        padding-left: 25px; 
+        padding-right: 25px;
+        padding-top: 5px;
+        display: grid;
+        gap: 5px 0;
+        grid-area: title-text; 
+        justify-content: start;
+        justify-items: center;
+    } 
+    .title-image { 
+        display: grid;
+        grid-area: title-image;
+        align-content: center;
+        justify-content: center;
+    }
+    .title-logo {
+        width: 250px;
+        height: 150px;
+    }
+}
