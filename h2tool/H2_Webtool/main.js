@@ -617,7 +617,7 @@ class H2tool{
       // calculate the produced H2 amount
       this.h2_lhv = parseInt(pem_operation.reduce((a, b) => a + b, 0) * this.n_pem); // MWh
       this.m_h2 = parseInt(this.h2_lhv / this.hu_h2); // t
-      this.h2_hhv = parseInt(this.m_h2 * this.ho_h2); // MWh
+      this.h2_hhv = parseInt(this.m_h2 * this.ho_h2); // MWh eine Angabe entweder oberer oder unterer HW
 
       // calculate the stack heat
       this.q_stack = parseInt(pem_operation.reduce((a, b) => a + b, 0) * this.n_pem_heat); // MWh
