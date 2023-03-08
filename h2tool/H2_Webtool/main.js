@@ -7,7 +7,7 @@ var chartConfig_car = {
   data: {
       labels: ['Betrieb von x Brennstoffzellen-Autos für 1 Jahr'],
       datasets: [{
-      data: [20857],
+      data: [21107],
       backgroundColor: ['rgba(207, 24, 32, 1.0)'],
       borderRadius: 25,
       borderWidth: 5,
@@ -31,7 +31,7 @@ var chartConfig_car = {
       scales: {
           x: {
               display: false,
-              max: 80000,
+              max: 85000,
               ticks: {
                 beginAtZero: true,
                 tickWidth: 1,
@@ -49,7 +49,7 @@ var chartConfig_bus = {
   data: {
       labels: ['Betrieb von x Brennstoffzellen-Bussen für 1 Jahr'],
       datasets: [{
-      data: [1270],
+      data: [1285],
       backgroundColor: ['rgba(236, 101, 37, 1.0)'],
       borderRadius: 25,
       borderWidth: 5,
@@ -73,7 +73,7 @@ var chartConfig_bus = {
       scales: {
           x: {
               display: false,
-              max: 4900,
+              max: 85000,
               ticks: {
                 beginAtZero: true,
                 tickWidth: 1,
@@ -91,14 +91,14 @@ var chartConfig_house = {
   data: {labels: ['Wärmeversorgung von x Wohngebäuden (kfW 40) mit 140 m²'],
       datasets: [{
       label: 'Versorgung mit Abwärme',
-      data: [18142],
+      data: [18362],
       backgroundColor: ['rgba(255, 255, 255, 1.0)'],
       borderRadius: 25,
       borderWidth: 5,
       inflateAmount: 5,      
       },{
       label: 'Heizen mit H2',
-      data: [64350],
+      data: [65120],
       backgroundColor: ['rgba(140, 140, 140, 1.0)'],
       borderRadius: 25,
       borderWidth: 5,
@@ -123,7 +123,7 @@ var chartConfig_house = {
       scales: {
           x: {
               display: false,
-              max: 322000,
+              max: 340000,
               stacked: true,
               ticks: {
                 beginAtZero: true,
@@ -143,7 +143,7 @@ var chartConfig_steel = {
   data: {
       labels: ['Herstellung von x Tonnen Stahl'],
       datasets: [{
-      data: [51435],
+      data: [52050],
       backgroundColor: ['rgba(175, 54, 140, 1.0)'],
       borderRadius: 25,
       borderWidth: 5,
@@ -167,7 +167,7 @@ var chartConfig_steel = {
       scales: {
           x: {
               display: false,
-              max: 200000,
+              max: 340000,
               ticks: {
                 beginAtZero: true,
                 tickWidth: 1,
@@ -265,6 +265,8 @@ class H2tool{
       this.resultPlot_house = new Chart(this.plotField_house, this.chartConfig_house);
       this.resultPlot_steel = new Chart(this.plotField_steel, this.chartConfig_steel);
       console.log('Charts initialized');
+      this.updateProgressBars();
+      console.log('Progress bars updated');
       this.calcResults();
       console.log('initial Results calculated');
     } // end constructor
@@ -430,18 +432,33 @@ class H2tool{
         this.pvInput.oninput = () => {
           if (this.pvInput.value > 100) {
             this.pvInput.value = 100;
+            this.pv = this.pvInput.value;
+            this.pvSlider.value = this.pv;
+            this.updateMax();
           } else if (this.pvInput.value < 0) {
             this.pvInput.value = 0;
+            this.pv = this.pvInput.value;
+            this.updateMax();
+          } else if (this.pvInput.value == "") {
+            this.pvSlider.value = 0;
+            this.pv = 0;
+            this.updateMax();
+          } else {
+            this.pv = this.pvInput.value;
+            this.pvSlider.value = this.pvInput.value;
+            this.updateMax();
           }
-          this.pv = this.pvInput.value;
-          this.pvSlider.value = this.pv;
-          this.updateMax();
+
+          this.updateCalcValues();
           this.calcResults();
           //all other functions
         };
         this.pvInput.onchange = () => {
-          if (isNaN(this.pvInput.value)) {
+          if (isNaN(this.pvInput.value) || this.pvInput.value == "") {
             this.pvInput.value = this.pvSlider.value;
+            this.updateProgressBars();
+            this.updateCalcValues();
+            this.calcResults();
           }
         };
       }
@@ -459,18 +476,33 @@ class H2tool{
         this.windCInput.oninput = () => {
           if (this.windCInput.value > 100) {
             this.windCInput.value = 100;
+            this.wind = this.windCInput.value;
+            this.windCSlider.value = this.wind;
+            this.updateMax();
           } else if (this.windCInput.value < 0) {
             this.windCInput.value = 0;
+            this.wind = this.windCInput.value;
+            this.updateMax();
+          } else if (this.windCInput.value == "") {
+            this.windCSlider.value = 0;
+            this.wind = 0;
+            this.updateMax();
+          } else {
+            this.windC = this.windCInput.value;
+            this.windCSlider.value = this.windC;
+            this.updateMax();
           }
-          this.windC = this.windCInput.value;
-          this.windCSlider.value = this.windC;
-          this.updateMax();
+
+          this.updateCalcValues();
           this.calcResults();
           //all other functions
         };
         this.windCInput.onchange = () => {
-          if (isNaN(this.windCInput.value)) {
+          if (isNaN(this.windCInput.value) || this.windCInput.value == "") {
             this.windCInput.value = this.windCSlider.value;
+            this.updateProgressBars();
+            this.updateCalcValues();
+            this.calcResults();
           }
         };
       }
@@ -488,18 +520,33 @@ class H2tool{
         this.windOInput.oninput = () => {
           if (this.windOInput.value > 100) {
             this.windOInput.value = 100;
+            this.windO = this.windOInput.value;
+            this.windOSlider.value = this.windO;
+            this.updateMax();
           } else if (this.windOInput.value < 0) {
             this.windOInput.value = 0;
+            this.windO = this.windOInput.value;
+            this.updateMax();
+          } else if (this.windOInput.value == "") {
+            this.windOSlider.value = 0;
+            this.windO = 0;
+            this.updateMax();
+          } else {
+            this.windO = this.windOInput.value;
+            this.windOSlider.value = this.windO;
+            this.updateMax();
           }
-          this.windO = this.windOInput.value;
-          this.windOSlider.value = this.windO;
-          this.updateMax();
+
+          this.updateCalcValues();
           this.calcResults();
           //all other functions
         };
         this.windOInput.onchange = () => {
-          if (isNaN(this.windOInput.value)) {
+          if (isNaN(this.windOInput.value) || this.windOInput.value == "") {
             this.windOInput.value = this.windOSlider.value;
+            this.updateProgressBars();
+            this.updateCalcValues();
+            this.calcResults();
           }
         };
       }
@@ -509,6 +556,7 @@ class H2tool{
         this.pemSlider.oninput = () => {
           this.pem = this.pemSlider.value;
           this.pemInput.value = this.pemSlider.value;
+          this.updateProgressBars();
           this.calcResults();
         };
       }
@@ -521,19 +569,50 @@ class H2tool{
           }
           this.pem = this.pemInput.value;
           this.pemSlider.value = this.pem;
+          this.updateProgressBars();
+          this.updateCalcValues();
           this.calcResults();
           //all other functions
         };
         this.pemInput.onchange = () => {
           if (isNaN(this.pemInput.value)) {
             this.pemInput.value = this.pemSlider.value;
+            this.updateCalcValues();
+            this.calcResults();
           } else if (this.pemInput.value <= 0) {
             this.pemInput.value = 1;
+            this.updateCalcValues();
+            this.calcResults();
           }
         };
       }  
     } //end addEvents
-  
+
+    updateCalcValues(){
+      this.pv = this.pvSlider.value;
+      this.windC = this.windCSlider.value;
+      this.windO = this.windOSlider.value;
+      this.pem = this.pemSlider.value;
+    }
+
+    updateProgressBars() {
+      const maxUse = 1.2;
+      var max = parseInt(this.pv) + parseInt(this.windC) + parseInt(this.windO);
+      for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
+        e.style.setProperty('--value', e.value);
+        e.style.setProperty('--min', e.min == '' ? '0' : e.min);
+        e.style.setProperty('--max', e.max == '' ? '100' : e.max);
+        e.addEventListener('input', () => e.style.setProperty('--value', e.value));
+      }
+      for (let elem of document.querySelectorAll('input[type="range"].slider-progressPEM')) {
+        elem.style.setProperty('--value', elem.value);
+        elem.style.setProperty('--min', elem.min == '' ? '0' : elem.min);
+        elem.style.setProperty('--max', elem.max == '' ? elem.max : elem.max);
+        elem.addEventListener('input', () => elem.style.setProperty('--value', elem.value))
+      }
+    } //end update progressbars
+
+
     updateMax() {
       const maxUse = 1.2;
       var max = parseInt(this.pv) + parseInt(this.windC) + parseInt(this.windO);
@@ -555,20 +634,10 @@ class H2tool{
         }
       }
 
-      for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
-        e.style.setProperty('--value', e.value);
-        e.style.setProperty('--min', e.min == '' ? '0' : e.min);
-        e.style.setProperty('--max', e.max == '' ? e.max : e.max);
-        e.addEventListener('input', () => e.style.setProperty('--value', e.value));
-      }
-      for (let e of document.querySelectorAll('input[type="range"].slider-progressPEM')) {
-        e.style.setProperty('--value', e.value);
-        e.style.setProperty('--min', e.min == '' ? '0' : e.min);
-        e.style.setProperty('--max', e.max == '' ? e.max : e.max);
-        e.addEventListener('input', () => e.style.setProperty('--value', e.value))
-      }
+      this.updateProgressBars();
 
-      //update all variables
+
+      //update all caclulation variables
       this.pem = this.pemSlider.value;
       this.pv = this.pvSlider.value;
       this.windC = this.windCSlider.value;
@@ -699,7 +768,7 @@ class H2tool{
     loadJSONFile(filePath_gen).then(data => {
       for (let i = 0; i < data.length; i++) {
         basedata[0].push(data[i][0]); //pv data
-        basedata[1].push(data[i][1]); //windC data
+        basedata[1].push(data[i][2]); //windC data
         basedata[2].push(data[i][3]); //windO data
       }
       console.log('basedata loaded properly');
