@@ -235,6 +235,7 @@ class H2tool{
     h2_hhv = 0;
     used_energy = 0;
 
+    
     //  data arrays
     basedata = null;
     etadata = null;
