@@ -5,7 +5,7 @@ const filePath_gen = "H2_Webtool/gen_data.json";
 var chartConfig_car = {
   type: 'bar',
   data: {
-      labels: ['Betrieb von x Brennstoffzellen-Autos für 1 Jahr'],
+      labels: ['Brennstoffzellen-Autos'],
       datasets: [{
       data: [21107],
       backgroundColor: ['rgba(207, 24, 32, 1.0)'],
@@ -47,7 +47,7 @@ var chartConfig_car = {
 var chartConfig_bus = {
   type: 'bar',
   data: {
-      labels: ['Betrieb von x Brennstoffzellen-Bussen für 1 Jahr'],
+      labels: ['Brennstoffzellen-Busse'],
       datasets: [{
       data: [1285],
       backgroundColor: ['rgba(236, 101, 37, 1.0)'],
@@ -88,16 +88,16 @@ var chartConfig_bus = {
 
 var chartConfig_house = {
   type: 'bar',
-  data: {labels: ['Wärmeversorgung von x Wohngebäuden (kfW 40) mit 140 m²'],
+  data: {labels: ['Wärmeversorgung'],
       datasets: [{
-      label: 'Versorgung mit Abwärme',
+      label: 'Abwärme',
       data: [18362],
       backgroundColor: ['rgba(255, 255, 255, 1.0)'],
       borderRadius: 25,
       borderWidth: 5,
       inflateAmount: 5,      
       },{
-      label: 'Heizen mit H2',
+      label: 'Brennwertkessel',
       data: [65120],
       backgroundColor: ['rgba(140, 140, 140, 1.0)'],
       borderRadius: 25,
@@ -141,7 +141,7 @@ var chartConfig_house = {
 var chartConfig_steel = {
   type: 'bar',
   data: {
-      labels: ['Herstellung von x Tonnen Stahl'],
+      labels: ['Tonnen Stahl'],
       datasets: [{
       data: [52050],
       backgroundColor: ['rgba(175, 54, 140, 1.0)'],
@@ -563,11 +563,16 @@ class H2tool{
       }
       if(this.pemInput != null && this.pemInput != undefined ){
         this.pemInput.oninput = () => {
-          const maxUse = 0.9;
+          const maxUse = 1.2;
           var max = parseInt(this.pv) + parseInt(this.windC) + parseInt(this.windO);
           if (this.pemInput.value > parseInt(max * maxUse)) {
-            this.pemInput.value = parseInt(max * maxUse);
+            this.pemInput.value = Math.ceil(max * maxUse);
+          } else if (this.pemInput.value == "") {
+            this.pemSlider.value = 0;
+            this.pem = 0;
           }
+
+          
           this.pem = this.pemInput.value;
           this.pemSlider.value = this.pem;
           this.updateProgressBars();
@@ -577,11 +582,15 @@ class H2tool{
         };
         this.pemInput.onchange = () => {
           if (isNaN(this.pemInput.value)) {
+            this.pemInput.value = this.pem;
+            this.updateCalcValues();
+            this.calcResults();
+          } else if (this.pemInput.value < 0) {
             this.pemInput.value = this.pemSlider.value;
             this.updateCalcValues();
             this.calcResults();
-          } else if (this.pemInput.value <= 0) {
-            this.pemInput.value = 1;
+          } else {
+            this.pemInput.value = this.pemSlider.value;
             this.updateCalcValues();
             this.calcResults();
           }
@@ -596,7 +605,7 @@ class H2tool{
       this.pem = this.pemSlider.value;
     }
 
-    updateProgressBars() {
+    updateProgressBars(){
       const maxUse = 1.2;
       var max = parseInt(this.pv) + parseInt(this.windC) + parseInt(this.windO);
       for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
@@ -650,7 +659,7 @@ class H2tool{
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 
-
+    // function that calculates the results
     calcResults() {
       let data_scaled = [[], [], []];
       let p_combined = [];
@@ -768,7 +777,7 @@ class H2tool{
     // load generator data
     loadJSONFile(filePath_gen).then(data => {
       for (let i = 0; i < data.length; i++) {
-        basedata[0].push(data[i][0]); //pv data
+        basedata[0].push(data[i][0] * 0.9); //pv data
         basedata[1].push(data[i][2]); //windC data
         basedata[2].push(data[i][3]); //windO data
       }

@@ -501,8 +501,8 @@ input[type=range].styled-sliderPEM.slider-progressPEM:active::-ms-fill-lower {
     position: absolute;
     width: fit-content;
     padding: 5px 10px;
-    left: calc(50% - 70px);
-    bottom: 25px;
+    left: calc(50% - 10px);
+    bottom: 125%;
     text-align: left;
     box-sizing: border-box;
     
@@ -520,7 +520,8 @@ input[type=range].styled-sliderPEM.slider-progressPEM:active::-ms-fill-lower {
 }
 [data-tooltip]:hover::after {
     visibility: visible;
-    opacity: 0.8;
+    opacity: 0.85;
+    z-index: 1;
     transform: translateY(0);
 }
 

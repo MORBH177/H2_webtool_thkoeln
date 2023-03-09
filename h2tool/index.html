@@ -23,31 +23,31 @@
             </div>
         </div>
         <div class="input-container">
-            <div class="eingabe-title">
+            <div class="eingabe-title" data-tooltip="Hier können Sie Ihre Erzeugungs- und Elektrolyseleistung einstellen.">
                 <h2>Eingabe</h2>
             </div>
-            <div class="icon-pv">
+            <div class="icon-pv" data-tooltip="Der Photovoltaik liegt ein Erzeugungsprofil mit ca. 990 Volllaststunden eines durchschnittlichen PV-Standorts in Deutschland zugrunde.">
                 <img src="H2_Webtool/public/pv_icon.svg" alt="PV-Icon" class="pv-icon">
             </div>
-            <div class="icon-wind-on">
+            <div class="icon-wind-on" data-tooltip="Der Windleistung Onshore liegt ein Erzeugungsprofil mit ca. 2250 Volllaststunden für einen mittleren Binnenland Standort in Deutschland zugrunde.">
                 <img src="H2_Webtool/public/wind_onshore_icon.svg" alt="Wind-Onshore-Icon" class="wind-on-icon">
             </div>
-            <div class="icon-wind-off">
+            <div class="icon-wind-off" data-tooltip="Der Windleistung Offshore liegt ein Erzeugungsprofil mit ca. 4350 Volllaststunden für einen Offshore Standort in Deutschland zugrunde.">
                 <img src="H2_Webtool/public/wind_offshore_icon.svg" alt="Wind-Offshore-Icon" class="wind-off-icon">
             </div>
-            <div class="icon-pem">
+            <div class="icon-pem" data-tooltip="Der PEM-Elektrolyseur wird mit Wirkungsgraden von 60 % (elektrisch) und 20 % (thermisch) angenommen.">
                 <img src="H2_Webtool/public/electrolyzer2.svg" alt="PEM-Icon" class="pem-icon">
             </div>
-            <div class="eingabe-pv">
+            <div class="eingabe-pv" data-tooltip="Hier können Sie die Leistung der PV-Anlagen angeben.">
                 <input type="text" class="input-fields" value="30" id="output_eingabe_PV">
             </div>
-            <div class="eingabe-wind-onshore">
+            <div class="eingabe-wind-onshore" data-tooltip="Hier können Sie die Leistung der Windkraftanlagen Onshore angeben.">
                 <input type="text" class="input-fields" value="30" id="output_eingabe_WKA_OnShore">
             </div>
-            <div class="eingabe-wind-offshore">
+            <div class="eingabe-wind-offshore" data-tooltip="Hier können Sie die Leistung der Windkraftanlagen Offshore angeben.">
                 <input type="text" class="input-fields" value="30" id="output_eingabe_WKA_OffShore">
             </div>
-            <div class="eingabe-pem">
+            <div class="eingabe-pem" data-tooltip="Hier können Sie die Leistung des PEM-Elektrolyseurs angeben.">
                 <input type="text" class="input-fields" value="30" id="output_eingabe_Elektrolyse">
             </div>
             <div class="area-slider-pv">
@@ -116,11 +116,11 @@
             </div>
         </div>
         <div class="output-charts">
-            <div class="chart-title">
+            <div class="chart-title" data-tooltip="Hier erfahren Sie, welche Versorgung für einen der angegebenen Anwendungsfälle mit Ihrer Elektrolyseauslegung möglich ist.">
                 <h2>Mögliche Anwendungsfälle</h2>
             </div>
             <div class="area-chart-car">
-                <div class="car-value">
+                <div class="car-value" data-tooltip="Diese Anzahl von Brennstoffzellen-KFZ kann mit Ihrem erzeugten Wasserstoff 1 Jahr lang betrieben werden.">
                     <input type="text" class="outputfields-versorgung" id="output-car" disabled>
                 </div>
                 <div class="car-chart">
@@ -133,7 +133,7 @@
                 </div>
             </div>
             <div class="area-chart-bus">
-                <div class="bus-value">
+                <div class="bus-value" data-tooltip="Diese Anzahl von Brennstoffzellen-Bussen kann mit Ihrem erzeugten Wasserstoff 1 Jahr lang betrieben werden.">
                         <input type="text" class="outputfields-versorgung" id="output-bus" disabled>
                 </div>
                 <div class="bus-chart">
@@ -146,7 +146,7 @@
                 </div>
             </div>
             <div class="area-chart-steel">
-                <div class="steel-value">
+                <div class="steel-value" data-tooltip="Diese Menge Stahl in Tonnen kann mit Ihrem erzeugten Wasserstoff hergestellt werden.">
                     <input type="text" class="outputfields-versorgung" id="output-steel" disabled>
                 </div>
                 <div class="steel-chart">
@@ -159,7 +159,7 @@
                 </div>
             </div>
             <div class="area-chart-house">
-                <div class="house-value">
+                <div class="house-value" data-tooltip="Diese Anzahl KfW40 Effizienzhäuser mit einer Grundfläche von 140 m² können mit Ihrem erzeugten Wasserstoff und/oder der Abwärme der Elektrolyse 1 Jahr lang versorgt werden.">
                     <input type="text" class="outputfields-versorgung" id="output-house" disabled>
                 </div>
                 <div class="chart-house">
