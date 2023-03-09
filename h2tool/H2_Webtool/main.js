@@ -23,7 +23,7 @@ var chartConfig_car = {
               display: false,
               },
               tooltip: {
-                  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.85)',
                   titleColor: 'rgba(0, 0, 0, 0.9)',
                   bodyColor: 'rgba(0, 0, 0, 0.9)',
               }
@@ -65,7 +65,7 @@ var chartConfig_bus = {
               display: false
           },
           tooltip: {
-              backgroundColor: 'rgba(255, 255, 255, 0.8)',
+              backgroundColor: 'rgba(255, 255, 255, 0.85)',
               titleColor: 'rgba(0, 0, 0, 0.9)',
               bodyColor: 'rgba(0, 0, 0, 0.9)',
           }
@@ -115,7 +115,7 @@ var chartConfig_house = {
               display: false
           },
           tooltip: {
-              backgroundColor: 'rgba(255, 255, 255, 0.8)',
+              backgroundColor: 'rgba(255, 255, 255, 0.85)',
               titleColor: 'rgba(0, 0, 0, 0.9)',
               bodyColor: 'rgba(0, 0, 0, 0.9)',
           }
@@ -159,7 +159,7 @@ var chartConfig_steel = {
               display: false
           },
           tooltip: {
-              backgroundColor: 'rgba(255, 255, 255, 0.8)',
+              backgroundColor: 'rgba(255, 255, 255, 0.85)',
               titleColor: 'rgba(0, 0, 0, 0.9)',
               bodyColor: 'rgba(0, 0, 0, 0.9)',
           }
@@ -777,7 +777,7 @@ class H2tool{
     // load generator data
     loadJSONFile(filePath_gen).then(data => {
       for (let i = 0; i < data.length; i++) {
-        basedata[0].push(data[i][0] * 0.9); //pv data
+        basedata[0].push(data[i][0] * 0.824); //pv data
         basedata[1].push(data[i][2]); //windC data
         basedata[2].push(data[i][3]); //windO data
       }
