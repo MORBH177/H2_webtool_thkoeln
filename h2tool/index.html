@@ -23,9 +23,12 @@
             </div>
         </div>
         <div class="input-container">
-            <div class="eingabe-title" data-tooltip="Hier können Sie Ihre Erzeugungs- und Elektrolyseleistung einstellen.">
+            <div class="eingabe-title">
                 <h2>Eingabe</h2>
             </div>
+            <div class="icon-information" data-tooltip="Hier können Sie Ihre Erzeugungs- und Elektrolyseleistung einstellen." id="info-icon">
+                <img src="H2_Webtool/public/info.png" alt="Info-Icon" class="info-icon">
+            </div>  
             <div class="icon-pv" data-tooltip="Der Photovoltaik liegt ein Erzeugungsprofil mit 918 Volllaststunden eines durchschnittlichen PV-Standorts in Deutschland zugrunde.">
                 <img src="H2_Webtool/public/pv_icon.svg" alt="PV-Icon" class="pv-icon">
             </div>
@@ -116,11 +119,14 @@
             </div>
         </div>
         <div class="output-charts">
-            <div class="chart-title" data-tooltip="Hier erfahren Sie, welche Versorgung für einen der angegebenen Anwendungsfälle mit Ihrer Elektrolyseauslegung möglich ist.">
+            <div class="chart-title">
                 <h2>Mögliche Anwendungsfälle</h2>
             </div>
+            <div class="icon-information" data-tooltip="Hier erfahren Sie, welche Versorgung für einen der angegebenen Anwendungsfälle mit Ihrer Elektrolyseauslegung möglich ist." id="info-icon">
+                <img src="H2_Webtool/public/info.png" alt="Info-Icon" class="info-icon">
+            </div>  
             <div class="area-chart-car">
-                <div class="car-value" data-tooltip="Diese Anzahl von Brennstoffzellen-KFZ kann mit Ihrem erzeugten Wasserstoff 1 Jahr lang betrieben werden.">
+                <div class="car-value" data-tooltip="Diese Anzahl an Brennstoffzellen-KFZ können mit Ihrem erzeugten Wasserstoff 1 Jahr lang betrieben werden.">
                     <input type="text" class="outputfields-versorgung" id="output-car" disabled>
                 </div>
                 <div class="car-chart">
@@ -133,7 +139,7 @@
                 </div>
             </div>
             <div class="area-chart-bus">
-                <div class="bus-value" data-tooltip="Diese Anzahl von Brennstoffzellen-Bussen kann mit Ihrem erzeugten Wasserstoff 1 Jahr lang betrieben werden.">
+                <div class="bus-value" data-tooltip="Diese Anzahl an Brennstoffzellen-Bussen können mit Ihrem erzeugten Wasserstoff 1 Jahr lang betrieben werden.">
                         <input type="text" class="outputfields-versorgung" id="output-bus" disabled>
                 </div>
                 <div class="bus-chart">
@@ -159,7 +165,7 @@
                 </div>
             </div>
             <div class="area-chart-house">
-                <div class="house-value" data-tooltip="Diese Anzahl KfW40 Effizienzhäuser mit einer Grundfläche von 140 m² können mit Ihrem erzeugten Wasserstoff und/oder der Abwärme der Elektrolyse 1 Jahr lang versorgt werden.">
+                <div class="house-value" data-tooltip="Diese Anzahl an KfW40 Effizienzhäuser mit einer Grundfläche von 140 m² können mit Ihrem erzeugten Wasserstoff und/oder der Abwärme des Elektrolyseurs 1 Jahr lang versorgt werden.">
                     <input type="text" class="outputfields-versorgung" id="output-house" disabled>
                 </div>
                 <div class="chart-house">
